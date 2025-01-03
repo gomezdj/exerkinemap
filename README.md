@@ -16,3 +16,13 @@ Compatible with major scientific consortia tools, including MoTrPAC, GTEx, HuBMA
 Impact:
 By providing an integrated platform for exploring how exercise influences health and disease at molecular, cellular, and organ levels, ExerkineMap paves the way for groundbreaking insights into precision exercise medicine and interventional strategies based on exercise biology.
 
+
+Main components:
+Data Input and Validation (Handle various input formats different omics and spatial technologies) 
+Data Preprocessing (Normalize, scale, and filter)
+Data Integration (gene names, spatial coordinates)
+Analysis and Modeling (statistical models, ML models for pattern recognition, network analysis for pathway exploration) 
+Visualization (Develop interactive tools for visualization representation of the data) 
+Output and Reporting (Generate reports and outputs user-friendly and informative)
+
+
