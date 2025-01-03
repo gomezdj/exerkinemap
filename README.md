@@ -25,4 +25,18 @@ Analysis and Modeling (statistical models, ML models for pattern recognition, ne
 Visualization (Develop interactive tools for visualization representation of the data) 
 Output and Reporting (Generate reports and outputs user-friendly and informative)
 
+HuBMAP contribution to ExerkineMap
+
+* Data Collection 
+* Processing
+* Analysis
+* Integration
+* Visualization and Publication
+* Feedback and Iteration
+
+Specific beneifts of studying exerkines
+
+Impact Highlights
+
+Discoveries in healthy molecular pathways neuroprotective mechanisms immune responses cancer responses translational medicine insights
 
