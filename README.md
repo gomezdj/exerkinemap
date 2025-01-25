@@ -9,28 +9,28 @@ ExerkineMap is an advanced computational framework designed for the integration,
 3. Installation
 4. Quick Start Guide
 5. Data Integration and Analysis
-6. Exerkine Identification
-7. Trajectory Inference and Network Analysis
-8. Spatial Mapping
-9. Single-Cell Analysis
-10. Visualization
-11. Validation
-12. Benchmarking and Performance
-13. Contributing
-14. License
-15. Acknowledgements
+        * Exerkine Identification
+        * Trajectory Inference and Network Analysis
+        * Spatial Mapping
+        * Single-Cell Analysis
+6. Visualization
+7. Validation
+8. Benchmarking and Performance
+9. Contributing
+10. License
+11. Acknowledgements
 
 # Introduction
 Exerkines are biomolecules released during physical exercise that mediate various physiological responses and health benefits. ExerkineMap integrates data from multiple omics domains (transcriptomics, proteomics, metabolomics, etc.), single-cell technologies, and spatial omics techniques to provide a holistic view of how exercise influences molecular and cellular processes.
 
 # Key Features
-Comprehensive Data Integration: Harmonizes multiomics, single-cell, and spatial data.
-Exerkine Profiling: Identifies and characterizes exerkines and their regulatory mechanisms.
-Trajectory and Network Inference: Applies advanced methods to infer cellular trajectories and molecular networks.
-Spatial Analysis: Maps the spatial distribution of cells and molecules within tissues affected by exercise.
-Interactive Visualization: Provides tools for visualizing data through heatmaps, scatter plots, UMAP plots, and more.
-Machine Learning Integration: Utilizes state-of-the-art ML models for enhanced data analysis.
-Robust Validation and Benchmarking: Ensures accuracy and reliability through rigorous validation and benchmarking.
+* Comprehensive Data Integration: Harmonizes multiomics, single-cell, and spatial data.
+* Exerkine Profiling: Identifies and characterizes exerkines and their regulatory mechanisms.
+* Trajectory and Network Inference: Applies advanced methods to infer cellular trajectories and molecular networks.
+* Spatial Analysis: Maps the spatial distribution of cells and molecules within tissues affected by exercise.
+* Interactive Visualization: Provides tools for visualizing data through heatmaps, scatter plots, UMAP plots, and more.
+* Machine Learning Integration: Utilizes state-of-the-art ML models for enhanced data analysis.
+* Robust Validation and Benchmarking: Ensures accuracy and reliability through rigorous validation and benchmarking.
 
 # Installation
 To install ExerkineMap, clone the repository and install the required dependencies:
@@ -42,9 +42,10 @@ pip install -r requirements.txt
 Ensure you have Python 3.8 or higher.
 
 # Quick Start Guide
-Load Your Data: Ensure your multiomics, single-cell, and spatial data are formatted correctly.
-Run Data Integration: Use the provided scripts to integrate your data.
-Analyze and Visualize: Leverage ExerkineMap’s functionalities to perform analysis and generate visualizations.
+1. Load Your Data: Ensure your multiomics, single-cell, and spatial data are formatted correctly.
+2. Run Data Integration: Use the provided scripts to integrate your data.
+3. Analyze and Visualize: Leverage ExerkineMap’s functionalities to perform analysis and generate visualizations.
+
 Example Usage
 ```
 import exerkine_map as em
@@ -73,7 +74,30 @@ em.plot_spatial_map(spatial_map)
 ExerkineMap identifies and characterizes exerkines—molecules released during exercise that mediate physiological effects. It uses differential expression analysis and network-based approaches to pinpoint key exerkines and their regulatory pathways.
 
 # Trajectory Inference and Network Analysis
-ExerkineMap applies methods such as Slingshot, Monocle, and PAGA to infer cellular trajectories. It also constructs signaling and regulatory networks to understand the systemic effects of exerkines.
+ExerkineMap utilizes scVelo for RNA velocity analysis and trajectory inference. This involves the following steps:
+* Preprocess the data to compute RNA velocity.
+* Infer trajectories using the velocity information.
+* Construct molecular networks to understand signaling pathways.
+
+```
+import scvelo as scv
+import scanpy as sc
+
+# Load the data into an AnnData object
+adata = sc.read("integrated_data.h5ad")
+
+# Preprocess for RNA velocity
+scv.pp.filter_and_normalize(adata)
+scv.pp.moments(adata)
+
+# Compute RNA velocity
+scv.tl.velocity(adata)
+scv.tl.velocity_graph(adata)
+
+# Visualize
+scv.pl.velocity_embedding_stream(adata, basis='umap')
+
+```
 
 # Spatial Mapping
 By integrating spatial transcriptomics and proteomics data, ExerkineMap provides insights into the spatial organization of cells within tissues. This helps in understanding how exercise-induced changes alter tissue architecture and cell positioning.
