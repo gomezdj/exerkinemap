@@ -1,11 +1,14 @@
 import tensorflow as tf
 from tensorflow.keras import layers, models
 
+# Define the model
 model = models.Sequential()
 
-# Input and Reshape
+# Input layer, expects input of shape (28, 28, 1)
 model.add(layers.InputLayer(input_shape=(28, 28, 1)))
-model.add(layers.Reshape((28, 28, 1)))
+
+# Reshape layer
+model.add(layers.Reshape((29, 28, 28, 1)))
 
 # First Convolutional Layer
 model.add(layers.Conv2D(64, (3, 3), activation='relu'))
@@ -19,20 +22,22 @@ model.add(layers.Conv2D(128, (3, 3), activation='relu'))
 # Second MaxPooling Layer
 model.add(layers.MaxPooling2D((2, 2)))
 
-# Note: Transpose operation normally wouldn't be here in a standard ConvNet architecture. For simplicity, we will assume reshaping or transposing is meant for flattening purpose.
-model.add(layers.Permute((2, 1, 3)))
+# Transpose layer
+model.add(layers.Permute((3, 2, 1)))
 
-# Flatten the tensor before Dense layers
-model.add(layers.Flatten())
+# Reshape layer
+model.add(layers.Reshape((-1, 128)))
 
-# First Fully Connected Layer
-model.add(layers.Dense(128, activation='relu'))
+# First Fully Connected Layer with Matrix Multiplication and Bias Addition
+model.add(layers.Dense(128, activation=None))
+model.add(tf.keras.layers.Activation('relu'))
 
-# Second Fully Connected Layer
-model.add(layers.Dense(10, activation='softmax'))
+# Second Fully Connected Layer with Matrix Multiplication and Bias Addition
+model.add(layers.Dense(10, activation=None))
+model.add(tf.keras.layers.Activation('softmax'))
 
-# Output Layer
-output = model.output
+# Compile the model
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
+# Print the model summary
 model.summary()
