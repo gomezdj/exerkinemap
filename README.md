@@ -128,5 +128,5 @@ Commit your changes and submit a pull request.
 ExerkineMap is licensed under the MIT License. See LICENSE for more details.
 
 # Acknowledgements
-We thank the developers of the libraries and frameworks utilized in ExerkineMap, including TensorFlow, PyTorch, Seurat, Scanpy, and others. Special thanks to the scientific community for providing valuable datasets and insights.
+We thank the developers of the libraries and frameworks utilized in ExerkineMap, including STELLAR, MaxFuse, SPACEc, TensorFlow, PyTorch, Seurat, Scanpy, and others. Special thanks to the scientific community for providing valuable datasets and insights.
 
