@@ -8,7 +8,7 @@ ExerkineMap is an advanced computational framework designed for the integration,
 2. Key Features
 3. Installation
 4. Quick Start Guide
-5. Data Integration and Analysis 
+5. **Data Integration and Analysis** 
         - Exerkine Identification
         - Trajectory Inference and Network Analysis
         - Spatial Mapping
