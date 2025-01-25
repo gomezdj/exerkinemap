@@ -1,4 +1,4 @@
-# Single-cell and Spatial Cell-cell communication frameworks
+# ExerkineMap
 # @gomez-dan
 
 import pandas as pd
