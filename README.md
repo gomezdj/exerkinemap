@@ -2,7 +2,7 @@
 
 
 Description:
-EXERKINEMAPPy is a cutting-edge computational tool developed in Python, specifically designed to seamlessly integrate multiomics, single-cell, and spatial omics data. This platform is dedicated to advancing our understanding of exercise-induced biomolecular dynamics, often referred to as exerkines, through comprehensive biological mapping across interorgan systems.
+EXERKINEMAP is a cutting-edge computational tool developed in Python, specifically designed to seamlessly integrate multiomics, single-cell, and spatial omics data. This platform is dedicated to advancing our understanding of exercise-induced biomolecular dynamics, often referred to as exerkines, through comprehensive biological mapping across interorgan systems.
 
 Capabilities:
 Multiomics Fusion: Integrates data from various omics technologies, including genomics, proteomics, metabolomics, and more, to provide a multidimensional view of biological processes.
