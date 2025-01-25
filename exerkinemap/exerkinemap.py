@@ -1,5 +1,5 @@
 # Single-cell and Spatial Cell-cell communication frameworks  
-# @daniel1gomez
+# @gomez-dan
 import pandas as pd
 import scanpy as sc
 
