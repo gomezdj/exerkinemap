@@ -69,7 +69,7 @@ em.plot_umap(trajectories)
 em.plot_spatial_map(spatial_map)
 ```
 
-## Data Integration and Analysis
+# Data Integration and Analysis
 # Exerkine Identification
 ExerkineMap identifies and characterizes exerkines—molecules released during exercise that mediate physiological effects. It uses differential expression analysis and network-based approaches to pinpoint key exerkines and their regulatory pathways.
 
