@@ -4,21 +4,21 @@
 ExerkineMap is an advanced computational framework designed for the integration, analysis, and visualization of exercise-induced molecular changes. It combines multiomics data, single-cell analyses, and spatial data to provide comprehensive insights into the effects of exercise on various biological systems. By leveraging advanced machine learning techniques and cutting-edge bioinformatics tools, ExerkineMap aims to unravel the complex molecular networks and cellular interactions modulated by physical exercise.
 
 # Table of Contents
-1. Introduction
-2. Key Features
-3. Installation
-4. Quick Start Guide
-5. **Data Integration and Analysis** 
-        - Exerkine Identification
-        - Trajectory Inference and Network Analysis
-        - Spatial Mapping
-        - Single-Cell Analysis
-6. Visualization
-7. Validation
-8. Benchmarking and Performance
-9. Contributing
-10. License
-11. Acknowledgements
+1. [Introduction](#introduction)
+2. [Key Features](#key-features)
+3. [Installation](#installation)
+4. [Quick Start Guide](#quick-start-guide)
+5. **[Data Integration and Analysis](#data-integration-and-analysis)**
+   - [Exerkine Identification](#exerkine-identification)
+   - [Trajectory Inference and Network Analysis](#trajectory-inference-and-network-analysis)
+   - [Spatial Mapping](#spatial-mapping)
+   - [Single-Cell Analysis](#single-cell-analysis)
+6. [Visualization](#visualization)
+7. [Validation](#validation)
+8. [Benchmarking and Performance](#benchmarking-and-performance)
+9. [Contributing](#contributing)
+10. [License](#license)
+11. [Acknowledgements](#acknowledgements)
 
 # Introduction
 Exerkines are biomolecules released during physical exercise that mediate various physiological responses and health benefits. ExerkineMap integrates data from multiple omics domains (transcriptomics, proteomics, metabolomics, etc.), single-cell technologies, and spatial omics techniques to provide a holistic view of how exercise influences molecular and cellular processes.
