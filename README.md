@@ -1,4 +1,4 @@
-# EXERKINEMAP++: EXERcise KINEmatics Multiomics single-cell Analysis and sPatial omics integration and maPping
+# EXERKINEMAP++: EXERcise KINEmatics Multiomics single-cell Analysis and spatial omics integration and maPping
 
 
 Description:
