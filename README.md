@@ -105,6 +105,19 @@ By integrating spatial transcriptomics and proteomics data, ExerkineMap provides
 # Single-Cell Analysis
 ExerkineMap leverages single-cell RNA sequencing and other single-cell technologies to explore cellular heterogeneity and identify cell-type-specific responses to exercise. It incorporates tools like Seurat and Scanpy for clustering, differential expression, and functional analysis.
 
+## 🧬 Single-cell Integration
+
+EXERKINEMAP integrates single-cell RNA sequencing data to achieve cell-type-specific resolution, identifying precise cellular sources, receptors, signaling cascades, and communication networks involved in exerkine responses.
+
+### Key Single-cell Functionalities:
+
+- **Cell-type-specific Exerkine Mapping**
+- **Ligand-Receptor Interaction Profiling**
+- **Cell-cell Communication Analysis**
+- **Spatial Transcriptomics Integration**
+
+Explore these analyses in the [`notebooks/single-cell-analysis`](notebooks/single-cell-analysis/) directory.
+
 # Visualization
 ExerkineMap includes interactive visualization tools to explore and interpret data:
 Heatmaps: For differential expression analysis.
