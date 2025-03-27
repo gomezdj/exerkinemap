@@ -6,6 +6,7 @@ import spatialdata as sd
 import spatialdata_io as sdio
 import spatialdata_plot as sdplot
 import napari_spatialdata as nsd
+import squidpy as sq
 import os
 
 def load_and_save_exerkinemap(input_csv_path, output_h5ad_path):
