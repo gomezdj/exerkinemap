@@ -1,8 +1,4 @@
 # exerkinemap.py
-from MaxFuse import construct_meta_cells, fuzzy_smoothing, initial_matching, joint_embedding
-from SPACEc import delaunay_edges, compute_distances
-from STELLAR import STELLAR, construct_graph, build_adjacency_matrix
-
 import pandas as pd
 import scanpy as sc
 import scvelo as scv
@@ -12,6 +8,10 @@ import spatialdata_plot as sdplot
 import napari_spatialdata as nsd
 import squidpy as sq
 import os
+from MaxFuse import construct_meta_cells, fuzzy_smoothing, initial_matching, joint_embedding
+from SPACEc import delaunay_edges, compute_distances
+from STELLAR import STELLAR, construct_graph, build_adjacency_matrix
+
 
 def load_and_save_exerkinemap(input_csv_path, output_h5ad_path):
     try:
@@ -81,7 +81,7 @@ def plot_spatial_data(spatial_data):
     except Exception as e:
         print(f"An error occurred while plotting: {e}")
 
-if __name__ == "__main__":
+def run_exerkinemap():
     input_csv_path = 'path_to_your/exerkinextissue.csv'
     output_h5ad_path = 'path_to_save/exerkinextissue.h5ad'
     
@@ -94,3 +94,7 @@ if __name__ == "__main__":
 
     # Interactive exploration using napari
     viewer = nsd.view(spatial_data)
+
+if __name__ == "__main__":
+    run_exerkinemap()
+
