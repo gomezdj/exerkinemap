@@ -1,1 +1,13 @@
-
+pandas
+scanpy
+scvelo
+spatialdata
+spatialdata-io
+spatialdata-plot
+napari-spatialdata
+torch
+transformers
+scikit-learn
+scipy
+numpy
+tensorflow
