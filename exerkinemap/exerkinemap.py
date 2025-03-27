@@ -1,9 +1,42 @@
 # ExerkineMap
-# @gomez-dan
-
 import pandas as pd
 import scanpy as sc
 import os
+import exerkine_map as em
+import scanpy as sc
+import scvelo as scv
+
+# Load and preprocess your data
+transcriptomics_data = em.load_data("transcriptomics.csv")
+proteomics_data = em.load_data("proteomics.csv")
+spatial_data = em.load_spatial_data("spatial_data.csv")
+
+# Integrate multiomics data
+integrated_data = em.integrate_data([transcriptomics_data, proteomics_data])
+
+# Run analysis
+exerkine_profiles = em.identify_exerkines(integrated_data)
+trajectories = em.infer_trajectories(integrated_data)
+spatial_map = em.map_spatial_relationships(spatial_data, integrated_data)
+
+# Visualize the results
+em.plot_heatmap(exerkine_profiles)
+em.plot_umap(trajectories)
+em.plot_spatial_map(spatial_map)
+
+# Additional analysis with scverse
+adata = sc.read("integrated_data.h5ad")
+
+# Preprocess for RNA velocity
+scv.pp.filter_and_normalize(adata)
+scv.pp.moments(adata)
+
+# Compute RNA velocity
+scv.tl.velocity(adata)
+scv.tl.velocity_graph(adata)
+
+# Visualize RNA velocity
+scv.pl.velocity_embedding_stream(adata, basis='umap')
 
 def load_and_save_exerkinemap(input_csv_path, output_h5ad_path):
     try:
