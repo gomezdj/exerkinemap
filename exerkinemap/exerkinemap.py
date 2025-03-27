@@ -1,10 +1,33 @@
 # ExerkineMap
 import pandas as pd
 import scanpy as sc
-import os
-import exerkine_map as em
-import scanpy as sc
 import scvelo as scv
+import spatialdata as sd
+import spatialdata_io as sdio
+import spatialdata_plot as sdplot
+import napari_spatialdata as nsd
+import os
+
+def load_and_save_exerkinemap(input_csv_path, output_h5ad_path):
+    try:
+        # Load CSV Data
+        df = pd.read_csv(input_csv_path)
+
+        # Create AnnData object from DataFrame
+        adata = sc.AnnData(
+            X=df[['Effect']].values,  # The main data matrix can be a placeholder, or any relevant numeric value
+            obs=df[['Exerkine', 'Source_Tissue', 'Target_Tissue', 'Biological_System']],
+            var=pd.DataFrame(index=df['Exerkine'])
+        )
+        
+        # Save AnnData object to .h5ad format
+        adata.write_h5ad(output_h5ad_path)
+        print(f"Data successfully saved to {output_h5ad_path}")
+    
+    except FileNotFoundError:
+        print(f"File not found: {input_csv_path}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 # Load and preprocess your data
 transcriptomics_data = em.load_data("transcriptomics.csv")
@@ -38,29 +61,31 @@ scv.tl.velocity_graph(adata)
 # Visualize RNA velocity
 scv.pl.velocity_embedding_stream(adata, basis='umap')
 
-def load_and_save_exerkinemap(input_csv_path, output_h5ad_path):
+def load_spatial_data(file_path):
     try:
-        # Load CSV Data
-        df = pd.read_csv(input_csv_path)
-
-        # Create AnnData object from DataFrame
-        adata = sc.AnnData(
-            X=df[['Effect']].values,  # The main data matrix can be a placeholder, or any relevant numeric value
-            obs=df[['Exerkine', 'Source_Tissue', 'Target_Tissue', 'Biological_System']],
-            var=pd.DataFrame(index=df['Exerkine'])
-        )
-        
-        # Save AnnData object to .h5ad format
-        adata.write_h5ad(output_h5ad_path)
-        print(f"Data successfully saved to {output_h5ad_path}")
-    
+        spatial_data = sdio.read(file_path)
+        return spatial_data
     except FileNotFoundError:
-        print(f"File not found: {input_csv_path}")
+        print(f"File not found: {file_path}")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+def plot_spatial_data(spatial_data):
+    try:
+        sdplot.plot(spatial_data)
+    except Exception as e:
+        print(f"An error occurred while plotting: {e}")
 
 if __name__ == "__main__":
     input_csv_path = 'path_to_your/exerkinextissue.csv'
     output_h5ad_path = 'path_to_save/exerkinextissue.h5ad'
     
     load_and_save_exerkinemap(input_csv_path, output_h5ad_path)
+
+    # Load and plot spatial data
+    spatial_file_path = 'path_to_your/spatial_data_file'
+    spatial_data = load_spatial_data(spatial_file_path)
+    plot_spatial_data(spatial_data)
+
+    # Interactive exploration using napari
+    viewer = nsd.view(spatial_data)
