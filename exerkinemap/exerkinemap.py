@@ -80,6 +80,20 @@ def plot_spatial_data(spatial_data):
     except Exception as e:
         print(f"An error occurred while plotting: {e}")
 
+def preprocess_data(adata):
+    sc.pp.normalize_total(adata, target_sum=1e4)
+    sc.pp.log1p(adata)
+    sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5)
+    adata = adata[:, adata.var.highly_variable]
+    return adata
+
+def find_spatially_variable_genes(adata):
+    sc.tl.rank_genes_groups(adata, 'spatial', method='wilcoxon')
+    return adata
+
+def plot_spatial_genes(adata):
+    sc.pl.rank_genes_groups(adata, n_genes=25, sharey=False)
+
 def run_exerkinemap():
     input_csv_path = 'path_to_your/exerkinextissue.csv'
     output_h5ad_path = 'path_to_save/exerkinextissue.h5ad'
