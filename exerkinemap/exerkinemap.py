@@ -342,10 +342,45 @@ def main():
     visualize_nodes_2d(node_list)
 
     marker_dict = {
-    "T cells": ["CD3D", "CD3E"],
-    "B cells": ["MS4A1"],
+    ligands: ["WNT","RSPO3","BMP", "GREM1", "WNT5B"]
+    "B cells": ["CD20"],
     "Endothelial": ["VWF", "PECAM1"],
-    "Fibroblast": ["COL1A1"],
+    "T cells": ["CD3D", "CD3E", "CD4","CD8"],
+    "NK cells": ["CD57"],
+    "Smooth muscle": ["MYH11","ACTA2","DES"],
+    "Mono/macrophages": ["CD14", "CD16", "CD68", "CD203"],
+    "Enteroendocrine": ["CD66", "CD57"],
+    "Goblet":[],[],
+    "Immature goblet"
+    "Enterochromaffin": ["RXFP4", "TPH1"],
+    "Enteroendocrine Un"
+    "D cells": ["SST"],
+    "I cells": ["CCK"],
+    "K cells": ["GIP"],
+    "L cells": ["INSL5", "GCG", "PYY],
+    "Mo cells": ["MLN"],
+    "NEUROG3": []
+    "S cells": ["SCT"],
+    "Sec. Spec. MUC6+": []
+    "Stroma": [],
+    "Plasma": [],
+    "Panth cells":[],[],
+    "Tuft": []
+    "Stem": []
+    "Cycling TA1": [],
+    "Cycling TA2": [],
+    "TA2": [],
+    "TA1": [],
+    "Immature ent.": [],
+    "Enterocytes":["BEST4"],
+    "Enterocytes 2": [],
+    "Cajal": ["KIT", "ANO"],
+    "glial cells": ["SOX10","CDH19","PLP1"],
+    "neurons": ["SYP","SYT1", "RBFOX1"],
+    "pericyctes": ["NOTCH3","MCAM1","RGS5"],
+    "adipocytes": ["PLIN1","LPL"],
+    "Fibroblast": ["COL1A1", "ADAMDEC1", "KCNN3"]
+    ],
     # Add more cell types and markers relevant to your system
     }
 
