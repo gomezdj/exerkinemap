@@ -268,7 +268,36 @@ def compute_spatial_neighbors(adata, spatial_key='spatial'):
         spatial_key (str): Key where spatial coords are stored.
     """
     sq.gr.spatial_neighbors(adata, coord_type='generic', spatial_key=spatial_key)
-    print(\"Spatial neighbors computed!\")
+    
+    gr.interaction_matrix(adata, cluster_key[,...])
+    gr.ripley(adata, cluster_key[,mode,...])
+    gr.ligrec(adata, cluster_key[,...])
+    gr.spatial_autocorr(adata[,...])
+    gr.sepal(adata, max_neighs[, genes, n_iter],...)
+
+    im.process(img[, layer, library_id, method, ...])
+    im.segment(img[,layer,library_id, method, ...])
+    im.calculate_image_features(adata, img[,...])
+
+    pl.spatial_scatter(adata[,shape,color,...])
+    pl.spatial_segment(adata[, color, groups, ...])
+    pl.nhood_enrichment(adata, cluster_key[,...])
+    pl.centrality_scores(adata, cluster_key[,...])
+    pl.interaction_matrix(adata, cluster_key[,...])
+    pl.ligrec(adata, [, cluster_key,...])
+    pl.ripley(adata, cluster_key, ...])
+    pl.var_by_distance(adata, var, anchor_key[,...])
+
+    read.visium(path, *[, counts_file, ...])
+    read.vizgen(path, *, count_file, meta_file)
+    read.nanostring(path, *, counts_file, meta_file)
+
+    tl.var_by_distance(adata, groups[,...])
+
+    datasets.merfish([path])
+    datasets.mibitof([path])
+
+    
     return adata
 
 def run_spatial_liana(adata, groupby='cell_type', condition_key='condition', resource='consensus'):
@@ -342,10 +371,12 @@ def main():
     visualize_nodes_2d(node_list)
 
     marker_dict = {
-    ligands: ["WNT","RSPO3","BMP", "GREM1", "WNT5B"]
+    ligands: ["WNT","RSPO3","BMP", "GREM1", "WNT5B"],
+    immune: ["CD7"],
     "B cells": ["CD20"],
     "Endothelial": ["VWF", "PECAM1"],
     "T cells": ["CD3D", "CD3E", "CD4","CD8"],
+    "DC cells": ["CD209", "CD11c"],
     "NK cells": ["CD57"],
     "Smooth muscle": ["MYH11","ACTA2","DES"],
     "Mono/macrophages": ["CD14", "CD16", "CD68", "CD203"],
