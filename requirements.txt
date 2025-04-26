@@ -1,5 +1,7 @@
 pandas
+numpy
 scanpy
+scarches
 scvelo
 spatialdata
 spatialdata-io
@@ -9,6 +11,5 @@ torch
 transformers
 scikit-learn
 scipy
-numpy
 tensorflow
 squidpy
