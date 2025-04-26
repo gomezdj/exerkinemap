@@ -99,6 +99,9 @@ scv.pl.velocity_embedding_stream(adata, basis='umap')
 
 ```
 
+# Automated Cell Annotation (scRNA-seq data)
+Cell type prediction (Python class `CellAssign`) for each cell is accomplish through a generative process that uses a neative binomial mixeture model to make cell-type predcitions. The inference is computed with the expectation maximization (EM) to optimize its parameters and provides a cell-type prediction for each cell. The logic implementing CellAssign can be found in [`scvi.external.cellassign.CellAssignModule`]. The implementation uses the same variable names as the math. The core logic is implemented in `scvi.external.cellassign.CellAssignModule.generative()`. In this method, the E step is taken and the log likelihood is computed for all cell types. In `scvi.external.cellassign.CellAssignModule.loss()` the full expected log likelihood is computed, as well as as the penalities corresponding to th epriors on pi and delta. CellAssign uses the standard `TrainingPlan`. 
+
 # Spatial Mapping
 By integrating spatial transcriptomics and proteomics data, ExerkineMap provides insights into the spatial organization of cells within tissues. This helps in understanding how exercise-induced changes alter tissue architecture and cell positioning.
 
