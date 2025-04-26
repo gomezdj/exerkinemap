@@ -22,14 +22,13 @@ import spatialdata_io as sdio
 import spatialdata_plot as sdplot
 import napari_spatialdata as nsd
 import squidpy as sq
+import liana as li
 
 from scvi.model import CellAssign
 import torch
 
 # Models and Graphs
 from MaxFuse import construct_meta_cells, fuzzy_smoothing, initial_matching, joint_embedding
-from SPACEc import delaunay_edges, compute_distances
-from STELLAR import STELLAR, construct_graph, build_adjacency_matrix
 
 # HubMAP Client
 from hubmap_api_py_client import Client
@@ -184,8 +183,6 @@ def run_cellassign(adata, marker_dict, label_key="cellassign_labels"):
     return adata, model
 
 
-  import liana as li
-
 def run_liana(adata, groupby='cellassign_labels', resource='consensus'):
     """
     Run LIANA cell-cell communication inference on an AnnData object.
@@ -257,7 +254,6 @@ def preprocess_adata(adata):
     adata = adata[:, adata.var.highly_variable]
     return adata
 
-import squidpy as sq
 
 def compute_spatial_neighbors(adata, spatial_key='spatial'):
     """
@@ -297,7 +293,6 @@ def compute_spatial_neighbors(adata, spatial_key='spatial'):
     datasets.merfish([path])
     datasets.mibitof([path])
 
-    
     return adata
 
 def run_spatial_liana(adata, groupby='cell_type', condition_key='condition', resource='consensus'):
@@ -427,6 +422,13 @@ def main():
     # RNA velocity example
     # adata = sc.read("integrated_data.h5ad")
     # infer_rna_velocity(adata)
+
+    adata = sc.read_h5ad(\"your_dataset.h5ad\")
+    adata = run_liana(adata, groupby='cell_type', condition_key='condition')
+    adata = run_spatial_liana(adata, groupby='cell_type', condition_key='condition')
+    plot_spatial_communication(adata, interaction_of_interest='TNF_TNFR', condition='disease')
+
+
 
 if __name__ == "__main__":
     main()
