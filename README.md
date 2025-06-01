@@ -1,18 +1,17 @@
 # EXERKINEMAPS: EXERcise KINEmatics Multiomics single-cell Analysis and spatial omics integration and maPping Schematics
 
 ## ExerkineMaps
-ExerkineMaps is an advanced computational framework designed for the integration, analysis, and visualization of exercise-induced molecular changes. It combines multiomics data, single-cell analyses, and spatial data to provide comprehensive insights into the effects of exercise on various biological systems. By leveraging advanced machine learning techniques and state-of-the-art bioinformatics tools, ExerkineMap aims to unravel the complex molecular networks and cellular interactions modulated by physical activity.
+ExerkineMaps is an advanced computational framework designed for the integration, analysis, and visualization of exercise-induced molecular changes. It combines multiomics data, single-cell analyses, and spatial data to provide comprehensive insights into the effects of exercise on various biological systems. By leveraging advanced machine learning techniques and state-of-the-art bioinformatics tools, ExerkineMaps aims to unravel the complex molecular networks and cellular interactions modulated by physical activity.
 
 # Table of Contents
 1. [Introduction](#introduction)
 2. [Key Features](#key-features)
 3. [Installation](#installation)
 4. [Quick Start Guide](#quick-start-guide)
-5. **[Data Integration and Analysis](#data-integration-and-analysis)**
+5. **[MoTrPAC and HuBMAP Data Integration and Analysis](#data-integration-and-analysis)**
    - [Exerkine Identification](#exerkine-identification)
-   - [Trajectory Inference and Network Analysis](#trajectory-inference-and-network-analysis)
    - [Spatial Mapping](#spatial-mapping)
-   - [Single-Cell Analysis](#single-cell-analysis)
+   - [Single-Cell Spatial Proteomics Analysis](#single-cell-analysis)
 6. [Visualization](#visualization)
 7. [Validation](#validation)
 8. [Benchmarking and Performance](#benchmarking-and-performance)
@@ -20,8 +19,8 @@ ExerkineMaps is an advanced computational framework designed for the integration
 10. [License](#license)
 11. [Acknowledgements](#acknowledgements)
 
-# Introduction
-Exerkines are biomolecules released during physical exercise that mediate various physiological responses and health benefits. ExerkineMap integrates data from multiple omics domains (transcriptomics, proteomics, metabolomics, etc.), single-cell technologies, and spatial omics techniques to provide a holistic view of how exercise influences molecular and cellular processes.
+# Introduction 
+Exerkines are biomolecules released during physical exercise that mediate various physiological responses and health benefits. ExerkineMaps integrates data from MoTrPAC transcriptomics, global proteomics, and HuBMAP spatial omics technologies techniques to provide a detailed map of how exercise influences molecular and cellular processes.
 
 # Key Features
 * Comprehensive Data Integration: Harmonizes multiomics, single-cell, and spatial data.
@@ -32,11 +31,11 @@ Exerkines are biomolecules released during physical exercise that mediate variou
 * Machine Learning Integration: Utilizes state-of-the-art ML models for enhanced data analysis.
 * Robust Validation and Benchmarking: Ensures accuracy and reliability through rigorous validation and benchmarking.
 
-# Installation
+# Installation 🧬
 To install ExerkineMap, clone the repository and install the required dependencies:
 ```
-git clone https://github.com/username/ExerkineMap.git
-cd ExerkineMap
+git clone https://github.com/username/ExerkineMaps.git
+cd ExerkineMaps
 pip install -r requirements.txt
 ```
 Ensure you have Python 3.8 or higher.
@@ -80,37 +79,18 @@ ExerkineMap utilizes scVelo for RNA velocity analysis and trajectory inference. 
 * Construct molecular networks to understand signaling pathways.
 
 ```
-import scvelo as scv
-import scanpy as sc
 
-# Load the data into an AnnData object
-adata = sc.read("integrated_data.h5ad")
-
-# Preprocess for RNA velocity
-scv.pp.filter_and_normalize(adata)
-scv.pp.moments(adata)
-
-# Compute RNA velocity
-scv.tl.velocity(adata)
-scv.tl.velocity_graph(adata)
-
-# Visualize
-scv.pl.velocity_embedding_stream(adata, basis='umap')
 
 ```
 
-# Automated Cell Annotation (scRNA-seq data)
-Cell type prediction (Python class `CellAssign`) for each cell is accomplish through a generative process that uses a neative binomial mixeture model to make cell-type predcitions. The inference is computed with the expectation maximization (EM) to optimize its parameters and provides a cell-type prediction for each cell. The logic implementing CellAssign can be found in [`scvi.external.cellassign.CellAssignModule`]. The implementation uses the same variable names as the math. The core logic is implemented in `scvi.external.cellassign.CellAssignModule.generative()`. In this method, the E step is taken and the log likelihood is computed for all cell types. In `scvi.external.cellassign.CellAssignModule.loss()` the full expected log likelihood is computed, as well as as the penalities corresponding to th epriors on pi and delta. CellAssign uses the standard `TrainingPlan`. 
 
 # Spatial Mapping
 By integrating spatial transcriptomics and proteomics data, ExerkineMap provides insights into the spatial organization of cells within tissues. This helps in understanding how exercise-induced changes alter tissue architecture and cell positioning.
 
-# Single-Cell Analysis
-ExerkineMap leverages single-cell RNA sequencing and other single-cell technologies to explore cellular heterogeneity and identify cell-type-specific responses to exercise. It incorporates tools like Seurat and Scanpy for clustering, differential expression, and functional analysis.
 
-## 🧬 Single-cell Integration
+##  Single-cell Integration
 
-EXERKINEMAP integrates single-cell RNA sequencing data to achieve cell-type-specific resolution, identifying precise cellular sources, receptors, signaling cascades, and communication networks involved in exerkine responses.
+EXERKINEMAPS integrates single-cell RNA sequencing data to achieve cell-type-specific resolution, identifying precise cellular sources, receptors, signaling cascades, and communication networks involved in exerkine responses.
 
 ### Key Single-cell Functionalities:
 
@@ -144,5 +124,5 @@ Commit your changes and submit a pull request.
 ExerkineMap is licensed under the MIT License. See LICENSE for more details.
 
 # Acknowledgements
-We thank the developers of the libraries and frameworks utilized in ExerkineMap, including STELLAR, MaxFuse, SPACEc, TensorFlow, PyTorch, Seurat, Scanpy, and others. Special thanks to the scientific community for providing valuable datasets and insights.
+We thank the developers of the libraries and frameworks utilized in ExerkineMaps, including STELLAR, MaxFuse, SPACEc, TensorFlow, PyTorch, Seurat, Scanpy, and others. Special thanks to the scientific community for providing valuable datasets and insights.
 
