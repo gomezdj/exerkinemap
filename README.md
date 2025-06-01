@@ -8,7 +8,7 @@ ExerkineMaps is an advanced computational framework designed for the integration
 2. [Key Features](#key-features)
 3. [Installation](#installation)
 4. [Quick Start Guide](#quick-start-guide)
-5. **[MoTrPAC and HuBMAP Data Integration and Analysis](#data-integration-and-analysis)**
+5. **[MoTrPAC and HuBMAP Spatial Mapping, Data Integration, and Analysis](#spatial-mapping-data-integration-and-analysis)**
    - [Exerkine Identification](#exerkine-identification)
    - [Spatial Mapping](#spatial-mapping)
    - [Single-Cell Spatial Proteomics Analysis](#single-cell-analysis)
