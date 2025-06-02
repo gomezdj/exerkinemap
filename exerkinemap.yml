@@ -1,9 +1,11 @@
-name: sda-tools
+name: exerkinemaps
 channels:
   - conda-forge
+  - bioconda
   - defaults
 dependencies:
-  - python=3.8
+  - pip
+  - python=3.9
   - scanpy=1.10.2
   - squidpy=1.2.3
   - anndata=0.9.2
