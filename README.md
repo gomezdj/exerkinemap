@@ -34,8 +34,8 @@ Exerkines are biomolecules released during physical exercise that mediate variou
 # Installation 🧬
 To install ExerkineMap, clone the repository and install the required dependencies:
 ```
-git clone https://github.com/username/ExerkineMaps.git
-cd ExerkineMaps
+git clone https://github.com/username/ExerkineMap.git
+cd ExerkineMap
 pip install -r requirements.txt
 ```
 Ensure you have Python 3.8 or higher.
@@ -47,7 +47,7 @@ Ensure you have Python 3.8 or higher.
 
 Example Usage
 ```
-import exerkine_map as em
+import exerkinemap as em
 
 # Load and preprocess your data
 transcriptomics_data = em.load_data("transcriptomics.csv")
