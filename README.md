@@ -1,4 +1,4 @@
-# EXERKINEMAP: EXERcise KINEmatics Multiomics single-cell Analysis and spatial omics integration and maPping schematics
+# EXERKINEMAP: EXERcise KINEmatics Multiomics single-cell Analysis and spatial omics integration and maPping tissue schematics
 
 ## ExerkineMap
 ExerkineMap is an advanced computational framework designed for the integration, analysis, and visualization of exercise-induced molecular changes. It combines multiomics data, single-cell analyses, and spatial data to provide comprehensive insights into the effects of exercise on various biological systems. By leveraging advanced machine learning techniques and state-of-the-art bioinformatics tools, ExerkineMaps aims to unravel the complex molecular networks and cellular interactions modulated by physical activity.
