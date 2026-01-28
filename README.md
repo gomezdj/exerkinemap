@@ -1,130 +1,103 @@
-# EXERKINEMAP: EXERcise KINEmatics Multiomics single-cell Analysis and spatial omics integration and maPping tissue schematics
+# ExerDynamix: EXERkine DYNamic Analysis, Multiomics Integration, and X-functional Clinical Mapping
 
-## ExerkineMap
-ExerkineMap is an advanced computational framework designed for the integration, analysis, and visualization of exercise-induced molecular changes. It combines multiomics data, single-cell analyses, and spatial data to provide comprehensive insights into the effects of exercise on various biological systems. By leveraging advanced machine learning techniques and state-of-the-art bioinformatics tools, ExerkineMaps aims to unravel the complex molecular networks and cellular interactions modulated by physical activity.
+# Introduction
+ExerDynamix is an advanced computational framework designed to move beyond static mapping into the dynamics of exercise-induced molecular changes. By integrating multi-omics, single-cell, and spatial data, ExerDynamix uncovers the "how" and "when" of exerkine signaling—focusing on receptor affinity, dose-response relationships, and adaptive capacity to translate molecular knowledge into clinical applications like disease prevention and exercise mimetics.
 
 # Table of Contents
-1. [Introduction](#introduction)
-2. [Key Features](#key-features)
-3. [Installation](#installation)
-4. [Quick Start Guide](#quick-start-guide)
-5. **[MoTrPAC and HuBMAP Spatial Mapping, Data Integration, and Analysis](#spatial-mapping-data-integration-and-analysis)**
-   - [Exerkine Identification](#exerkine-identification)
-   - [Spatial Mapping](#spatial-mapping)
-   - [Single-Cell Spatial Proteomics Analysis](#single-cell-analysis)
-6. [Visualization](#visualization)
-7. [Validation](#validation)
-8. [Benchmarking and Performance](#benchmarking-and-performance)
-9. [Contributing](#contributing)
-10. [License](#license)
-11. [Acknowledgements](#acknowledgements)
+1. [Key Features](#key-features)
+2. [Installation](#installation)
+3. [Quick Start Guide](#quick-start-guide)
+4. **[Exerkine Dynamics & Clinical Translation](#spatial-mapping-data-analysis)**
+   - [Receptor-Dependent Mechanisms](#receptor-dependent-mechanisms)
+   - [Receptor-Independent Mechanisms](#receptor-independent-mechanisms)
+   - [Dose-Response & Potency](#spatial-mapping)
+   - [Adaptive Capacity Analysis](#adpative-capacity-analysis)
+6. [Spatial & Single-Cell Integration](#spatial-single-cell-integration)
+7. [Visualization & Benchmarking](#visualization-benchmarking)
+8. [Contributing](#contributing)
+9. [License](#license)
+10. [Acknowledgements](#acknowledgements)
 
-# Introduction 
-Exerkines are biomolecules released during physical exercise that mediate various physiological responses and health benefits. ExerkineMaps integrates data from MoTrPAC transcriptomics, global proteomics, and HuBMAP spatial omics technologies techniques to provide a detailed map of how exercise influences molecular and cellular processes.
+Key Features
+* Dynamic Kinetic Modeling: Maps secretion triggers and distribution (autocrine/paracrine/endocrine) across tissues.
 
-# Key Features
-* Comprehensive Data Integration: Harmonizes multiomics, single-cell, and spatial data.
-* Exerkine Profiling: Identifies and characterizes exerkines and their regulatory mechanisms.
-* Trajectory and Network Inference: Applies advanced methods to infer cellular trajectories and molecular networks.
-* Spatial Analysis: Maps the spatial distribution of cells and molecules within tissues affected by exercise.
-* Interactive Visualization: Provides tools for visualizing data through heatmaps, scatter plots, UMAP plots, and more.
-* Machine Learning Integration: Utilizes state-of-the-art ML models for enhanced data analysis.
-* Robust Validation and Benchmarking: Ensures accuracy and reliability through rigorous validation and benchmarking.
+* Receptor-Specific Mapping: Identifies receptor localization and affinity to characterize downstream signaling cascades.
+
+* Translational Pipeline: Designed to identify pharmacological targets for Exercise Mimetics.
+
+* Multi-Consortia Integration: Harmonizes data from MoTrPAC, HuBMAP, HTAN, and PsychENCODE.
+
+* Spatial-Temporal Trajectories: Infers molecular networks and cellular trajectories using CUDA-accelerated ML models.
 
 # Installation 🧬
-To install ExerkineMap, clone the repository and install the required dependencies:
+To install ExerDynamix, clone the repository and install the dependencies:
 ```
-git clone https://github.com/gomezdj/ExerkineMap.git
-cd ExerkineMap
+git clone https://github.com/gomezdj/ExerDynamix.git
+cd ExerDynamix
 pip install -r requirements.txt
 ```
-Ensure you have Python 3.8 or higher.
+Requirement: Python 3.9+ and CUDA-capable NVIDIA GPU (recommended for AMD Ryzen 9 9950X builds).
 
 # Quick Start Guide
-1. Load Your Data: Ensure your multiomics, single-cell, and spatial data are formatted correctly.
-2. Run ExerkineMap: Use the provided scripts to map your spatial single-cell data.
-3. Analyze and Visualize: Leverage ExerkineMap’s functionalities to perform analysis and generate visualizations.
-
-Example Usage
+High-Level API
 ```
-import exerkinemap as em
+import exerdynamix as ed
 
-# Load and preprocess your data
-transcriptomics_data = em.load_data("transcriptomics.csv")
-proteomics_data = em.load_data("proteomics.csv")
-spatial_data = em.load_spatial_data("spatial_data.csv")
+# Load spatial and omics data
+integrated_data = ed.load_and_integrate(transcriptomics="rna.csv", proteomics="protein.csv")
 
-# Integrate multiomics data
-integrated_data = em.integrate_data([transcriptomics_data, proteomics_data])
+# Analyze Dynamics: Dose-Response & Receptor Affinity
+dynamics_results = ed.analyze_dynamics(integrated_data, dose_column='intensity_min')
 
-# Run analysis
-exerkine_profiles = em.identify_exerkines(integrated_data)
-trajectories = em.infer_trajectories(integrated_data)
-spatial_map = em.map_spatial_relationships(spatial_data, integrated_data)
+# Map to Clinical Targets (Mimetics)
+targets = ed.identify_mimetics(dynamics_results, disease_context="neurological")
 
-# Generate visualizations
-em.plot_heatmap(exerkine_profiles)
-em.plot_umap(trajectories)
-em.plot_spatial_map(spatial_map)
+# Visualize the Exerkine Effect
+ed.plot_dose_response(dynamics_results)
 ```
 
-# Quick Start
+ONNEX Inference Pipeline
 ```
-from exerkinemap.onnx_pipeline import ExerkineMapONNXPipeline
+from exerdynamix.onnx_pipeline import ExerDynamixONNXPipeline
 
-pipeline = ExerkineMapONNXPipeline(
-    onnx_model_path="models/ExerciseTrainingModel.onnx",
-    encoding_strategy='spatial_heatmap',
+pipeline = ExerDynamixONNXPipeline(
+    onnx_model_path="models/ExerDynamics_v1.onnx",
     apply_diffusion=True
 )
 
+# Predicting Exerkine effect based on spatial coordinates and receptor localization
 results = pipeline.predict_from_spatial_data(
     spatial_coords=coords,
     G_expr=expression_matrix,
-    adjacency=adj_matrix,
-    ligands=['IL6', 'IL15', 'BDNF'],
-    receptors=['IL6R', 'IL15RA', 'NTRK2'],
-    gene_names=all_genes
+    ligands=['IL6', 'BDNF', 'CTNF'],
+    receptors=['IL6R', 'NTRK2', 'LIFR']
 )
 ```
 
+# Exerkine Dynamics & Clinical Translation
+- ExerDynamix transitions from "what is there" to "how it works" by focusing on:
 
-# Spatial Mapping
-By integrating spatial transcriptomics and proteomics data, ExerkineMap provides insights into the spatial organization of cells within tissues. This helps in understanding how exercise-induced changes alter tissue architecture and cell positioning.
+- Receptor-Dependent Mechanisms: Distinguishing between receptor-mediated signaling and passive diffusion/EV-mediated transport.
 
+- Dose-Response Relationship: Calculating exerkine potency and efficacy to determine the "onset of action" across different tissues.
 
-##  Single-cell Integration
+- Adaptive Capacity: Factoring in inter-individual variability (diet, sleep, health status) to predict clinical outcomes in cancer, cardiovascular, and neurological diseases.
 
-EXERKINEMAP integrates single-cell RNA sequencing data to achieve cell-type-specific resolution, identifying precise cellular sources, receptors, signaling cascades, and communication networks involved in exerkine responses.
-
-### Key Single-cell Functionalities:
-
-- **Cell-type-specific Exerkine Mapping**
-- **Ligand-Receptor Interaction Profiling**
-- **Cell-cell Communication Analysis**
-- **Spatial Transcriptomics Integration**
-
-Explore these analyses in the [`notebooks/single-cell-analysis`](notebooks/single-cell-analysis/) directory.
+# Spatial & Single-Cell Integration
+By leveraging Xenium and Stereo-seq data, ExerDynamix provides:
+Cell-type-specific Exerkine Mapping: Precise cellular sources and targets. 
+Ligand-Receptor Interaction Profiling: High-resolution spatial communication networks.
+Barrier Permeability Analysis: Modeling exerkine distribution across the blood-brain barrier.
 
 # Visualization
-ExerkineMap includes interactive visualization tools to explore and interpret data:
-Heatmaps: For differential expression analysis.
-UMAP Plots: For visualizing cellular trajectories and clustering.
-Network Diagrams: To illustrate molecular interactions and regulatory networks.
-Spatial Maps: To depict the spatial distribution of cells and molecules.
-
-# Benchmarking and Performance
-ExerkineMap includes benchmarking tools to compare its performance with existing frameworks. Key metrics include accuracy, F1 score, ARI, and computational efficiency.
-
-# Contributing
-We welcome contributions from the community. To contribute:
-Fork the repository.
-Create a new branch for your feature or bugfix.
-Commit your changes and submit a pull request.
+ExerDynamix includes interactive tools optimized for complex dynamics:
+Kinetic Curves: Plasma concentration vs. Time ($AUC$).
+Sigmoidal Response Plots: Tissue response (%) vs. Dose ($log_{10}$ scale).
+Spatial Heatmaps: Visualizing the "Exerkine Infusion" effect across 3D tissue architectures.
 
 # License
-ExerkineMap is licensed under the MIT License. See LICENSE for more details.
+ExerDynamix is licensed under the MIT License.
 
 # Acknowledgements
-We thank the developers of the libraries and frameworks utilized in ExerkineMap, including STELLAR, SPACEc, TensorFlow, PyTorch, Scanpy, Squidpy, and others. Special thanks to the scientific community for providing valuable datasets and insights.
+Special thanks to the Snyder Lab, the CSUEB & Stanford collaborative teams, and the developers of Scanpy, Squidpy, and PyTorch.
 
