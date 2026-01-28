@@ -68,19 +68,24 @@ em.plot_umap(trajectories)
 em.plot_spatial_map(spatial_map)
 ```
 
-# Data Integration and Analysis
-# Exerkine Identification
-ExerkineMap identifies and characterizes exerkines—molecules released during exercise that mediate physiological effects. It uses differential expression analysis and network-based approaches to pinpoint key exerkines and their regulatory pathways.
-
-# Trajectory Inference and Network Analysis
-ExerkineMap utilizes scVelo for RNA velocity analysis and trajectory inference. This involves the following steps:
-* Preprocess the data to compute RNA velocity.
-* Infer trajectories using the velocity information.
-* Construct molecular networks to understand signaling pathways.
-
+# Quick Start
 ```
+from exerkinemap.onnx_pipeline import ExerkineMapONNXPipeline
 
+pipeline = ExerkineMapONNXPipeline(
+    onnx_model_path="models/ExerciseTrainingModel.onnx",
+    encoding_strategy='spatial_heatmap',
+    apply_diffusion=True
+)
 
+results = pipeline.predict_from_spatial_data(
+    spatial_coords=coords,
+    G_expr=expression_matrix,
+    adjacency=adj_matrix,
+    ligands=['IL6', 'IL15', 'BDNF'],
+    receptors=['IL6R', 'IL15RA', 'NTRK2'],
+    gene_names=all_genes
+)
 ```
 
 
@@ -90,7 +95,7 @@ By integrating spatial transcriptomics and proteomics data, ExerkineMap provides
 
 ##  Single-cell Integration
 
-EXERKINEMAPS integrates single-cell RNA sequencing data to achieve cell-type-specific resolution, identifying precise cellular sources, receptors, signaling cascades, and communication networks involved in exerkine responses.
+EXERKINEMAP integrates single-cell RNA sequencing data to achieve cell-type-specific resolution, identifying precise cellular sources, receptors, signaling cascades, and communication networks involved in exerkine responses.
 
 ### Key Single-cell Functionalities:
 
@@ -108,9 +113,6 @@ UMAP Plots: For visualizing cellular trajectories and clustering.
 Network Diagrams: To illustrate molecular interactions and regulatory networks.
 Spatial Maps: To depict the spatial distribution of cells and molecules.
 
-# Validation
-ExerkineMap ensures the accuracy and reliability of analyses through rigorous validation methodologies, including cross-validation, permutation tests, and experimental verification (e.g., flow cytometry, immunohistochemistry).
-
 # Benchmarking and Performance
 ExerkineMap includes benchmarking tools to compare its performance with existing frameworks. Key metrics include accuracy, F1 score, ARI, and computational efficiency.
 
@@ -124,5 +126,5 @@ Commit your changes and submit a pull request.
 ExerkineMap is licensed under the MIT License. See LICENSE for more details.
 
 # Acknowledgements
-We thank the developers of the libraries and frameworks utilized in ExerkineMaps, including STELLAR, MaxFuse, SPACEc, TensorFlow, PyTorch, Seurat, Scanpy, and others. Special thanks to the scientific community for providing valuable datasets and insights.
+We thank the developers of the libraries and frameworks utilized in ExerkineMap, including STELLAR, SPACEc, TensorFlow, PyTorch, Scanpy, Squidpy, and others. Special thanks to the scientific community for providing valuable datasets and insights.
 
