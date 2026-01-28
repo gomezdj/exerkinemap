@@ -1,44 +1,31 @@
-<<<<<<< HEAD
-anndata==0.7.6
+numpy>=1.21.0
+scipy>=1.7.0
+scikit-learn>=1.0.0
+onnxruntime>=1.12.0
+onnxruntime-gpu
+scanpy>=1.9.0
+squidpy>=1.2.0
+anndata>=0.8.0
 pandas==1.5.5
-python-louvain==0.1
-scanpy==1.8
-python==3.9.0
-numpy==1.12.5
+leidenalg==0.11.0
 scikit-image==0.18
-=======
-anndata
-scanpy
 zarr==2.14.0
 h5py==3.12.0
 python==3.8.10
 numpy==1.26.4
 pandas==1.5.3
->>>>>>> 4596b11 (updated package)
 scikit-learn==1.2.1
-mlxtend==0.22.0
+mlxtend==0.24.0
 setuptools==63.4.1
 pytorch==0.1.2
+torch==2.7.0
+torch-geometric==2.6.1
 matplotlib==3.7.1
 seaborn==0.12.2
 umap-learn==0.5.3
 liana-py==0.1.2
 networkx==3.2
 tensorflow==2.19.0
-<<<<<<< HEAD
 squidpy==1.6.5
 igraph==0.9.10
 louvain==0.7.1
-napari-spatialdata==0.5.6 
-spatialdata==0.4.0
-spatialdata-io==0.2.0
-spatialdata-plot==0.2.10
-=======
-torch==2.7.0
-torch-geometric==2.6.1
-squidpy==0.11.1
-napari-spatialdata==0.5.2post1
-spatialdata==0.2.5.post0
-# spatialdata-io==0.2.0
-# spatialdata-plot==0.2.10
->>>>>>> 4596b11 (updated package)
