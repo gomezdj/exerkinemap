@@ -34,7 +34,7 @@ Exerkines are biomolecules released during physical exercise that mediate variou
 # Installation 🧬
 To install ExerkineMap, clone the repository and install the required dependencies:
 ```
-git clone https://github.com/username/ExerkineMap.git
+git clone https://github.com/gomezdj/ExerkineMap.git
 cd ExerkineMap
 pip install -r requirements.txt
 ```
@@ -42,7 +42,7 @@ Ensure you have Python 3.8 or higher.
 
 # Quick Start Guide
 1. Load Your Data: Ensure your multiomics, single-cell, and spatial data are formatted correctly.
-2. Run Data Integration: Use the provided scripts to integrate your data.
+2. Run ExerkineMap: Use the provided scripts to map your spatial single-cell data.
 3. Analyze and Visualize: Leverage ExerkineMap’s functionalities to perform analysis and generate visualizations.
 
 Example Usage
