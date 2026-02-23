@@ -7,8 +7,18 @@ import numpy as np
 from typing import Dict, List, Optional, Tuple, Any
 import warnings
 
-from .onnx_classifier import ExerkineONNXClassifier, EnsembleONNXClassifier
-from .lri_image_encoder import LRIImageEncoder, create_image_from_exerkinemap_data
+# Optional ONNX inference components (require onnxruntime)
+try:
+    from .onnx_classifier import ExerkineONNXClassifier, EnsembleONNXClassifier
+    from .lri_image_encoder import LRIImageEncoder, create_image_from_exerkinemap_data
+    _ONNX_AVAILABLE = True
+except ImportError:
+    ExerkineONNXClassifier = None  # type: ignore[assignment,misc]
+    EnsembleONNXClassifier = None  # type: ignore[assignment,misc]
+    LRIImageEncoder = None  # type: ignore[assignment,misc]
+    create_image_from_exerkinemap_data = None  # type: ignore[assignment]
+    _ONNX_AVAILABLE = False
+
 from .cell_lri_scores import (
     compute_initial_exerkine_profile,
     compute_cell_lri_scores,

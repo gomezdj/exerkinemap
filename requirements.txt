@@ -28,4 +28,6 @@ networkx==3.2
 tensorflow==2.19.0
 squidpy==1.6.5
 igraph==0.9.10
-louvain==0.7.1
+graphviz==0.20.1
+scipy==1.10.1
+six==1.16.0

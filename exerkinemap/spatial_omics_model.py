@@ -12,7 +12,7 @@ class SpatialOmicsModel(nn.Module):
         lri_feat_dim: int,
         hidden_dim: int,
         output_dim: int,
-        use_gene_network: bool = False
+        use_protein_network: bool = False,
     ):
         super().__init__()
         self.use_protein_network = use_protein_network
