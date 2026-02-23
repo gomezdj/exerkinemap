@@ -1,7 +1,7 @@
-# ExerDynamix: EXERkine DYNamic Analysis, Multiomics Integration, and X-functional Clinical Mapping
+# ExerkineMap: ExerKINE dynamic Analysis, Multiomics Integration, and X-functional Clinical Mapping
 
 # Introduction
-ExerDynamix is an advanced computational framework designed to move beyond static mapping into the dynamics of exercise-induced molecular changes. By integrating multi-omics, single-cell, and spatial data, ExerDynamix uncovers the "how" and "when" of exerkine signaling—focusing on receptor affinity, dose-response relationships, and adaptive capacity to translate molecular knowledge into clinical applications like disease prevention and exercise mimetics.
+ExerkineMap is an advanced computational framework designed to move beyond static mapping into the dynamics of exercise-induced molecular changes. By integrating multi-omics, single-cell, and spatial data, ExerDynamix uncovers the "how" and "when" of exerkine signaling—focusing on receptor affinity, dose-response relationships, and adaptive capacity to translate molecular knowledge into clinical applications like disease prevention and exercise mimetics.
 
 # Table of Contents
 1. [Key Features](#key-features)
