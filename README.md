@@ -1,7 +1,7 @@
-# ExerkineMap: ExerKINE dynamic Analysis, Multiomics Integration, and X-functional Clinical Mapping
+# ExerDynamix: EXERkine DYNamic Analysis, Multiomics Integration, and X-functional Clinical Mapping
 
 # Introduction
-ExerkineMap is an advanced computational framework designed to move beyond static mapping into the dynamics of exercise-induced molecular changes. By integrating multi-omics, single-cell, and spatial data, ExerDynamix uncovers the "how" and "when" of exerkine signaling—focusing on receptor affinity, dose-response relationships, and adaptive capacity to translate molecular knowledge into clinical applications like disease prevention and exercise mimetics.
+ExerDynamix is an advanced computational framework designed to move beyond static mapping into the dynamics of exercise-induced molecular changes. By integrating multi-omics, single-cell, and spatial data, ExerDynamix uncovers the "how" and "when" of exerkine signaling—focusing on receptor affinity, dose-response relationships, and adaptive capacity to translate molecular knowledge into clinical applications like disease prevention and exercise mimetics.
 
 # Table of Contents
 1. [Key Features](#key-features)
@@ -30,10 +30,10 @@ Key Features
 * Spatial-Temporal Trajectories: Infers molecular networks and cellular trajectories using CUDA-accelerated ML models.
 
 # Installation 🧬
-To install ExerMap, clone the repository and install the dependencies:
+To install ExerDynamix, clone the repository and install the dependencies:
 ```
-git clone https://github.com/gomezdj/ExerkineMap.git
-cd ExerkineMap
+git clone https://github.com/gomezdj/ExerDynamix.git
+cd ExerDynamix
 pip install -r requirements.txt
 ```
 Requirement: Python 3.9+ and CUDA-capable NVIDIA GPU (recommended for AMD Ryzen 9 9950X builds).
@@ -41,27 +41,27 @@ Requirement: Python 3.9+ and CUDA-capable NVIDIA GPU (recommended for AMD Ryzen 
 # Quick Start Guide
 High-Level API
 ```
-import exerkinemap as map
+import exerdynamix as ed
 
 # Load spatial and omics data
-integrated_data = em.load_and_integrate(transcriptomics="rna.csv", proteomics="protein.csv")
+integrated_data = ed.load_and_integrate(transcriptomics="rna.csv", proteomics="protein.csv")
 
 # Analyze Dynamics: Dose-Response & Receptor Affinity
-dynamics_results = em.analyze_dynamics(integrated_data, dose_column='intensity_min')
+dynamics_results = ed.analyze_dynamics(integrated_data, dose_column='intensity_min')
 
 # Map to Clinical Targets (Mimetics)
-targets = em.identify_mimetics(dynamics_results, disease_context="neurological")
+targets = ed.identify_mimetics(dynamics_results, disease_context="neurological")
 
 # Visualize the Exerkine Effect
-em.plot_dose_response(dynamics_results)
+ed.plot_dose_response(dynamics_results)
 ```
 
 ONNEX Inference Pipeline
 ```
-from exerkinemap.onnx_pipeline import ExerkineMapONNXPipeline
+from exerdynamix.onnx_pipeline import ExerDynamixONNXPipeline
 
-pipeline = ExerkineMapONNXPipeline(
-    onnx_model_path="models/ExerkineMap_v1.onnx",
+pipeline = ExerDynamixONNXPipeline(
+    onnx_model_path="models/ExerDynamics_v1.onnx",
     apply_diffusion=True
 )
 
@@ -74,8 +74,8 @@ results = pipeline.predict_from_spatial_data(
 )
 ```
 
-# Exerkine Kinetics, Dynamics & Clinical Translation
-- ExerkineMap transitions from "what is there" to "how it works" by focusing on:
+# Exerkine Dynamics & Clinical Translation
+- ExerDynamix transitions from "what is there" to "how it works" by focusing on:
 
 - Receptor-Dependent Mechanisms: Distinguishing between receptor-mediated signaling and passive diffusion/EV-mediated transport.
 
@@ -84,19 +84,19 @@ results = pipeline.predict_from_spatial_data(
 - Adaptive Capacity: Factoring in inter-individual variability (diet, sleep, health status) to predict clinical outcomes in cancer, cardiovascular, and neurological diseases.
 
 # Spatial & Single-Cell Integration
-By leveraging Xenium and Stereo-seq data, ExerkineMap provides:
+By leveraging Xenium and Stereo-seq data, ExerDynamix provides:
 Cell-type-specific Exerkine Mapping: Precise cellular sources and targets. 
 Ligand-Receptor Interaction Profiling: High-resolution spatial communication networks.
 Barrier Permeability Analysis: Modeling exerkine distribution across the blood-brain barrier.
 
 # Visualization
-ExerkineMap includes interactive tools optimized for complex dynamics:
+ExerDynamix includes interactive tools optimized for complex dynamics:
 Kinetic Curves: Plasma concentration vs. Time ($AUC$).
 Sigmoidal Response Plots: Tissue response (%) vs. Dose ($log_{10}$ scale).
 Spatial Heatmaps: Visualizing the "Exerkine Infusion" effect across 3D tissue architectures.
 
 # License
-ExerkineMap is licensed under the MIT License.
+ExerDynamix is licensed under the MIT License.
 
 # Acknowledgements
 Special thanks to the Snyder Lab, the CSUEB & Stanford collaborative teams, and the developers of Scanpy, Squidpy, and PyTorch.

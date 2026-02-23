@@ -1,4 +1,4 @@
-EXERDYNAMIX_CLASSES = {
+EXERKINEMAP_CLASSES = {
     0: "Sedentary_Baseline",
     1: "Acute_Endurance_Response",      # IL-6, IL-15 signaling
     2: "Acute_Resistance_Response",     # IGF-1, FGF2 pathways
