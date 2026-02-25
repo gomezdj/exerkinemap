@@ -1,6 +1,6 @@
 # ExerkineMap **Virtual Physiological System v2.2** — a computational framework for exercise-induced exerkine signaling across cells, tissues, and organs.
 
-ExerkineMap integrates eight mathematical layers — from multi-omic state embeddings through causal inference, optimal control theory, and generative biomolecule design — to model, simulate, and prescribe exercise interventions at single-cell resolution.
+ExerkineMap integrates nine mathematical layers — from multi-omic state embeddings through causal inference, optimal control theory, and generative biomolecule design — to model, simulate, and prescribe exercise interventions at single-cell resolution.
 
 ## Key Features
 * Eight-Layer Mathematical Pipeline: Encodes unified cellular states through VAE and GNN multi-omic embeddings (RNA, ATAC, RRBS, proteomics), propagates exerkine signals via reaction-diffusion ODEs ($dF/dt = -\lambda F + \sum \omega_{ij} F_j(t) + u_i(t)$), and classifies exercise states across autocrine, paracrine, and endocrine signaling scales.
