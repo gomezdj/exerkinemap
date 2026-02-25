@@ -11,7 +11,7 @@ ExerkineMap integrates nine mathematical layers — from multi-omic state embedd
 
 * Generative Biomolecule Design & Ensemble Prediction: Combines XGBoost, RandomForest, and LightGBM stacked ensembles over diffused exerkine features with a generative biomolecule optimizer to detect signaling gaps and propose pharmacological mimetics for disease contexts including cancer, cardiovascular, and neurological disorders.
 
-* Multi-Consortia Spatial-Temporal Integration: Harmonizes multimodal spatial and single-cell data from MoTrPAC, HuBMAP, HTAN, and PsychENCODE using CUDA-accelerated graph neural networks and ONNX inference to resolve inter-organ exerkine communication networks and temporal diffusion trajectories.
+* Multi-Consortia Spatial-Temporal Integration: Harmonizes multimodal spatial and single-cell data from MoTrPAC, HuBMAP, HTAN, and PsychENCODE using graph neural networks to resolve inter-organ exerkine communication networks and temporal diffusion trajectories.
 
 # Installation 🧬
 
@@ -35,7 +35,6 @@ pip install -e .
 | Python | ≥ 3.9 | |
 | PyTorch | ≥ 2.7 | Spatial GNN layers |
 | torch-geometric | ≥ 2.6 | `build_spatial_graph`, `SpatialOmicsModel` |
-| onnxruntime / onnxruntime-gpu | ≥ 1.12 | `ExerkineMap` |
 | scanpy / squidpy / anndata | see yml | Single-cell & spatial workflows |
 | CUDA GPU | recommended | Signal diffusion & GNN acceleration |
 
