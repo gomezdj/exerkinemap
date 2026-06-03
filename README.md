@@ -34,7 +34,7 @@ pip install -e .
 | PyTorch | ≥ 2.7 | Spatial GNN layers |
 | torch-geometric | ≥ 2.6 | `build_spatial_graph`, `SpatialOmicsModel` |
 | scanpy / squidpy / anndata | see yml | Single-cell & spatial workflows |
-| CUDA GPU | recommended | Signal diffusion & GNN acceleration |
+| Google GPU || TPU | recommended | Signal diffusion & GNN acceleration |
 
 # Quick Start Guide
 
