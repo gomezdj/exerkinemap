@@ -3,15 +3,13 @@
 ExerkineMap integrates nine mathematical layers — from multi-omic state embeddings through causal inference, optimal control theory, and generative biomolecule design — to model, simulate, and prescribe exercise interventions at single-cell resolution.
 
 ## Key Features
-* Eight-Layer Mathematical Pipeline: Encodes unified cellular states through VAE and GNN multi-omic embeddings (RNA, ATAC, RRBS, proteomics), propagates exerkine signals via reaction-diffusion ODEs ($dF/dt = -\lambda F + \sum \omega_{ij} F_j(t) + u_i(t)$), and classifies exercise states across autocrine, paracrine, and endocrine signaling scales.
+* Eight-Layer Mathematical Pipeline: Encodes unified cellular states through VAE and GNN multi-omic embeddings (RNA, ATAC, RRBS, proteomics, metabolites & lipids, immune levels, post-translational modifications), propagates exerkine signals via reaction-diffusion ODEs ($dF/dt = -\lambda F + \sum \omega_{ij} F_j(t) + u_i(t)$), and classifies exercise states across autocrine, paracrine, and endocrine signaling scales.
 
 * Probabilistic Ligand-Receptor Communication: Scores ligand-receptor interactions using Bayesian Monte Carlo estimation with STRING and Reactome priors — resolving receptor affinity, pairwise activation probabilities ($P_{ij} = \sigma(\alpha \log x_i(l) + \gamma \log x_j(r) + \eta_{ij})$), and downstream pathway impact at single-cell resolution.
 
-* Causal Inference & Optimal Exercise Control: Applies Pearl do-calculus structural causal models to quantify exercise intervention effects ($C_{ij} = \mathbb{E}[Y_i \mid do(F_j)] - \mathbb{E}[Y_i]$) and solves LQR optimal control problems to prescribe individualized exerkine secretion trajectories.
+* Generative Biomolecule Design \& Ensemble Prediction: Combines XGBoost, RandomForest, and LightGBM stacked ensembles over diffused exerkine features with a generative biomolecule optimizer to detect signaling gaps and propose personalized exercise prescriptions (ExRx \& DfRx: AE, RE, Combined AE/RE, HE, ME) for health, disease, and resilience contexts including CVD, obesity, aging, cancer, autoimmune, and neurological diseases/disorders.
 
-* Generative Biomolecule Design & Ensemble Prediction: Combines XGBoost, RandomForest, and LightGBM stacked ensembles over diffused exerkine features with a generative biomolecule optimizer to detect signaling gaps and propose pharmacological mimetics for disease contexts including cancer, cardiovascular, and neurological disorders.
-
-* Multi-Consortia Spatial-Temporal Integration: Harmonizes multimodal spatial and single-cell data from MoTrPAC, HuBMAP, HTAN, and PsychENCODE using graph neural networks to resolve inter-organ exerkine communication networks and temporal diffusion trajectories.
+* Multi-Consortia Spatial-Temporal Integration: Harmonizes multimodal spatial and single-cell data from MoTrPAC, HuBMAP, HTAN, PsychENCODE, and Human Cell Atlas using graph neural networks to resolve inter-organ crosstalk exerkine multi-tissue cell-cell communication networks and temporal diffusion trajectories.
 
 # Installation 🧬
 
