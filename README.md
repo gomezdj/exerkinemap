@@ -1,4 +1,4 @@
-# ExerkineMap **Virtual Physiological System v2.2** — a computational framework for exercise-induced exerkine signaling across cells, tissues, and organs.
+# ExerkineMap **Virtual Physiome** — a computational framework for exercise-induced exerkine signaling across cells, tissues, and organs.
 
 ExerkineMap integrates nine mathematical layers — from multi-omic state embeddings through causal inference, optimal control theory, and generative biomolecule design — to model, simulate, and prescribe exercise interventions at single-cell resolution.
 
