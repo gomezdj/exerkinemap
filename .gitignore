@@ -1,0 +1,11 @@
+data/
+results/
+models/
+*.h5ad
+*.hdf5
+*.h5mu
+.venv/
+__pycache__/
+*.egg-info/
+.DS_Store
+*.pyc
