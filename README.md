@@ -272,7 +272,7 @@ EXERKINEMAP is designed to:
 4. Quantify ligand–receptor communication between cells.
 5. Model spatial and temporal **exerkine signal propagation**.
 6. Infer downstream pathway activation.
-7. Construct **intraorgan and interorgan exercise-responsive communication maps**.
+7. Construct **cross-organ exerkine maps**.
 8. Explore candidate molecular sequences using generative language models.
 
 ## Applications
