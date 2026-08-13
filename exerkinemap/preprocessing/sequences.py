@@ -5,17 +5,27 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, List, Optional
 
+def process_dna_sequence(sequence, chunk_size=6, k=3, stopwords=None):
+    if stopwords is None:
+        stopwords = set()
 
-def clean_sequence(sequence: str, lowercase: bool = True, remove_non_acgt: bool = False) -> str:
-    """Clean a nucleotide/protein sequence string for downstream modeling."""
-    if sequence is None:
-        return ""
-    cleaned = str(sequence).strip()
-    if lowercase:
-        cleaned = cleaned.lower()
-    if remove_non_acgt:
-        cleaned = "".join(ch for ch in cleaned if ch in set("acgt"))
-    return cleaned
+    # Step 1: Fragment into chunks
+    chunks = [sequence[i:i + chunk_size] for i in range(0, len(sequence), chunk_size)]
+    
+    cleaned_chunks = []
+    all_kmers = []
+
+    for chunk in chunks:
+        # Step 2: Generate 3-mers using a sliding window
+        chunk_kmers = [chunk[i:i + k] for i in range(len(chunk) - k + 1)]
+        
+        # Step 3: Data Cleaning (Stopword removal)
+        filtered_kmers = [kmer for kmer in chunk_kmers if kmer not in stopwords]
+        
+        cleaned_chunks.append(filtered_kmers)
+        all_kmers.extend(filtered_kmers)
+
+    return chunks, cleaned_chunks, all_kmers
 
 
 def load_fasta_sequences(path: Any, *, lowercase: bool = True) -> List[dict]:

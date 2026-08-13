@@ -12,18 +12,44 @@ import scanpy as sc
 import pandas as pd
 from pathlib import Path
 
-# Configure logging
-logger = logging.getLogger(__name__)
+# Load data
+adata = sc.read()
 
-# Resolve repository root and set data paths
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-RAW_SC_DIR = PROJECT_ROOT / "data" / "raw" / "single_cell"
-METADATA_DIR = PROJECT_ROOT / "data" / "raw" / "metadata"
-PROCESSED_SC_DIR = PROJECT_ROOT / "data" / "processed" / "anndata"
+def normalize_and_scale(adata):
+    """Normalize total counts per cell, log-transform, and identify highly variable genes."""
+    print("Normalizing and log-transforming data...")
+    sc.pp.normalize_total(adata, target_sum=1e4)
+    sc.pp.log1p(adata)
 
-def create_directories():
-    """Ensure output directories exist."""
-    PROCESSED_SC_DIR.mkdir(parents=True, exist_ok=True)
+    print("Extracting highly variable genes...")
+    sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5)
+    
+    # Save the raw state before scaling
+    adata.raw = adata
+    
+    return adata
+
+def run_quality_control(adata):
+    """Filter out low-quality cells and genes."""
+    print("Starting Quality Control...")
+    
+    # Identify mitochondrial genes to calculate QC metrics
+    adata.var['mt'] = adata.var_names.str.startswith('MT-') | adata.var_names.str.startswith('mt-')
+    sc.pp.calculate_qc_metrics(adata, qc_vars=['mt'], percent_top=None, log1p=False, inplace=True)
+
+    initial_cells, initial_genes = adata.shape
+    
+    # Standard filtering thresholds
+    sc.pp.filter_cells(adata, min_genes=200)
+    sc.pp.filter_genes(adata, min_cells=3)
+    
+    # Filter cells with too high mitochondrial content (e.g., > 15%) or abnormally high counts
+    adata = adata[adata.obs.pct_counts_mt < 15, :]
+    
+    final_cells, final_genes = adata.shape
+    print(f"QC Complete. Filtered out {initial_cells - final_cells} cells and {initial_genes - final_genes} genes.")
+    
+    return adata
 
 def load_and_merge_data(h5ad_name="sc_transcriptomics.h5ad", meta_name="sc_metadata.csv"):
     """Load the .h5ad file and merge external metadata if available."""
@@ -85,9 +111,6 @@ def normalize_and_scale(adata):
     return adata
 
 def main():
-    logger.info("Initializing 02_preprocess_single_cell workflow...")
-    create_directories()
-
     # Load data
     adata = load_and_merge_data()
 

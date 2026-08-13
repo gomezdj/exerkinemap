@@ -12,6 +12,11 @@ import numpy as np
 from pathlib import Path
 from sklearn.metrics import mean_squared_error, roc_auc_score
 
+# test_run_benchmarking.py
+import pytest
+from workflows.run_benchmarking import BenchmarkSuite
+
+
 # Configure logging
 logger = logging.getLogger(__name__)
 
@@ -117,6 +122,12 @@ def evaluate_component_benchmarks():
     
     df_benchmarks = pd.DataFrame(benchmarks)
     return df_benchmarks
+
+def test_benchmark_execution():
+    suite = BenchmarkSuite()
+    metrics = suite.evaluate_model(model_name="", dataset="exerkinemap_test")
+    assert "accuracy" in metrics
+    assert "f1_score" in metrics
 
 def main():
     logger.info("Initializing benchmarking execution workflow...")

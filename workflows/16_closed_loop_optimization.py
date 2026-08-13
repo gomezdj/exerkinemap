@@ -1,7 +1,7 @@
 """
 16_closed_loop_optimization.py
 
-This script implements Phase 17 of the EXERKINEMAP framework.
+This script implements the closed-loop optimization phase for the MoTrPAC framework.
 It executes closed-loop optimization:
 Design -> Predict -> Compare -> Optimize
 
@@ -27,14 +27,14 @@ def create_directories():
 
 def forward_model_simulation(candidate_seq):
     """
-    Simulates the forward model pipeline for a given candidate sequence:
-    A_hat_0 -> G_E_hat -> F_hat(t) -> A_P_hat
+    Simulates the forward model pipeline for a given candidate sequence.
     Returns a mock pathway activation vector A_P_hat.
     """
-    # In production, this runs scripts 08 through 11 programmatically on the mutated sequence.
-    # We simulate vector responses based on sequence length and amino acid properties.
-    np.random.seed(len(candidate_seq))
-    simulated_activation = np.random.uniform(0.1, 1.0, size=5) # 5 core pathways (e.g., PI3K, MAPK, etc.)
+    # Use a hash of the actual sequence string to seed, so mutations change the output
+    seq_hash = sum(ord(char) for char in candidate_seq)
+    np.random.seed(seq_hash)
+    
+    simulated_activation = np.random.uniform(0.1, 1.0, size=5) # 5 core pathways
     return simulated_activation
 
 def compute_inverse_loss(a_p_hat, a_p_target):
@@ -45,7 +45,7 @@ def compute_inverse_loss(a_p_hat, a_p_target):
 
 def optimize_sequence_loop(initial_candidate, target_a_p, max_iter=10, epsilon=0.05):
     """
-    Phase 17: Closed-Loop Optimization Loop
+    Closed-Loop Optimization Loop for the MoTrPAC framework.
     Repeatedly optimizes candidate until L_INV < epsilon.
     """
     logger.info(f"Starting closed-loop optimization for candidate: {initial_candidate['candidate_id']}...")
@@ -77,12 +77,15 @@ def optimize_sequence_loop(initial_candidate, target_a_p, max_iter=10, epsilon=0
             logger.info(f"Convergence reached! L_INV ({loss:.4f}) < epsilon ({epsilon}).")
             break
             
-        # 4. Optimize (Simulate directed mutation / gradient-based token adjustment in sequence space)
-        # In a full deployment, this mutates weak residues to minimize L_INV gradients.
-        mutation_index = np.random.randint(5, len(current_seq))
-        amino_acids = "VLIFAWMCQEDRKHSTY"
-        mutated_aa = amino_acids[np.random.randint(0, len(amino_acids))]
-        current_seq = current_seq[:mutation_index] + mutated_aa + current_seq[mutation_index+1:]
+        # 4. Optimize (Simulate directed mutation)
+        if len(current_seq) > 5:
+            mutation_index = np.random.randint(5, len(current_seq))
+            amino_acids = "VLIFAWMCQEDRKHSTY"
+            mutated_aa = amino_acids[np.random.randint(0, len(amino_acids))]
+            current_seq = current_seq[:mutation_index] + mutated_aa + current_seq[mutation_index+1:]
+        else:
+            logger.warning("Sequence too short to mutate safely. Aborting optimization.")
+            break
         
     return {
         "candidate_id": initial_candidate['candidate_id'],
@@ -93,13 +96,14 @@ def optimize_sequence_loop(initial_candidate, target_a_p, max_iter=10, epsilon=0
     }
 
 def main():
-    logger.info("Initializing 16_closed_loop_optimization workflow...")
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+    logger.info("Initializing 16_closed_loop_optimization workflow for MoTrPAC...")
     create_directories()
 
-    # 1. Define desired target pathway activation state (A_P^*) e.g., high exercise-induced signaling
+    # 1. Define desired target pathway activation state (A_P^*)
     target_a_p = np.array([0.95, 0.90, 0.85, 0.92, 0.88])
     
-    # 2. Load generated candidate from Phase 16
+    # 2. Load generated candidate
     candidates_path = PROJECT_ROOT / "results" / "sequences" / "generated_and_filtered_candidates.csv"
     if candidates_path.exists():
         candidates_df = pd.read_csv(candidates_path)

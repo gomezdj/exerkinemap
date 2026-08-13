@@ -13,28 +13,6 @@ import requests
 import logging
 from pathlib import Path
 
-# Configure logging
-logger = logging.getLogger(__name__)
-
-# Resolve repository root and set target raw data paths
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = PROJECT_ROOT / "data" / "raw"
-
-TARGET_DIRS = {
-    "single_cell": DATA_DIR / "single_cell",
-    "spatial": DATA_DIR / "spatial",
-    "sequences_dna": DATA_DIR / "sequences" / "dna",
-    "sequences_rna": DATA_DIR / "sequences" / "rna",
-    "sequences_protein": DATA_DIR / "sequences" / "protein",
-    "metadata": DATA_DIR / "metadata"
-}
-
-def create_directories():
-    """Ensure all target data directories exist in the repository."""
-    for name, path in TARGET_DIRS.items():
-        path.mkdir(parents=True, exist_ok=True)
-    logger.info("Verified all data/raw/ subdirectories.")
-
 def download_reference_file(url: str, output_path: Path):
     """Download public molecular sequence references."""
     if output_path.exists():
