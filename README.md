@@ -4,6 +4,66 @@
 
 EXERKINEMAP integrates **single-cell omics, spatial omics, genomic and protein language models, molecular sequences, ligand–receptor biology, and graph-based signal propagation** to characterize the exercise responsome and identify candidate **exerkines, ligands, receptors, pathways, and intercellular communication networks**.
 
+ExerkineRNA -> ExerkineProtein -> ExerkineMap pipeline.
+
+ExerkineRNA, CaLM-based GLM, uses tokenizing nucleotides (A, C, G, T), you tokenize:
+* codons (64 tokens)
+* optionally k-mer codons (192 tokens)
+* optionally codon + regulatory tags (e.g., Kozak, signal peptide motifs)
+
+This gives you:
+* richer embeddings
+* better alignment with protein-level features
+* improved generative stability
+* better integration with single-cell omics
+
+Step 1 -- CaLM generates genomic candidates 
+
+You codon spans: 
+ATG GCT [MASK] [MASK] TTT GGA ...
+
+CaLM predicts biologically plausible codons:
+ATG GCT CAG AAG TTT GGA ...
+
+Step 2 - ExerkineProtein (ESM-2) refines amino-acid sequence
+You mask protein regions:
+MKTLLI[MASK][MASK]FVLSA
+
+ESM-2 fills in:
+MKTLLILAVVAFVLSA
+
+Step 3 - ExekineMap aligns RNA <-> protein embeddings
+
+Ensures
+* codon usage matches secretion efficiency
+* protein structure matches ligand-receptor binding
+* sequence fits exercise-responsive omics patterns
+
+## Species adapatation
+
+codon vocabulary is identical across species
+
+reading-frame structure is universal
+
+transformer architecture is universal
+
+masking objective is universal
+
+You simply change the training corpus:
+
+Human (GRCh38)
+
+Mouse (GRCm39)
+
+Rat
+
+Horse
+
+Yeast
+
+No architectural changes needed.
+
+
 ## Architecture
 
 ```text
@@ -98,6 +158,24 @@ f_{\theta_N}
 ]
 
 The representation can be used to characterize **regulatory sequence context, exercise-responsive genes, exerkine transcripts, and genomic relationships**.
+
+------------------------------------------------------------------------------------------
+Module        |    Purpose                          | Example Implementation
+-------       |   ----------                        | -----------------------
+ExerkineRNA   |    Genomic Language Model (gLM)     | BERT/GPT-style masked LM trained on                    |    for nucleotide sequences                exercise-responsive genes
+                    with CaLM (codon-aware GLM)     |  Encodes genomics sequences of exerkines
+                    
+
+ExerkineProtein  Protein Language Model (pLM) for amino acid sequences ESM-2 or hybrid transformer with residue features
+
+ExerkineMap    | Shared latent space for RNA <-> protein embeddings | Constrastive projection aligning GLM and PLM representations
+
+OmicsIntegrator  | Integrates single-cell and spatial omics | Graph neural network (GNN) or attention-based fusion
+
+SignalPropagator  | Models ligand-receptor communication  | Graph propagation using ligand-receptor edges (LR)
+
+PathwayInferencer |   Infers downstream pathway activation | Transformer decoder or diffusion model over signaling graph
+
 
 ## PLM — Protein Language Model
 
@@ -361,6 +439,21 @@ python scripts/build_lr_database.py
 ```bash
 python scripts/benchmark.py
 ```
+
+## Implementation Notes
+* Environment: Conda or Micromamba with PyTorch (MPS or CUDA).
+* Pretrained Models: Genomic LM: DNABERT2 / DNABERT3
+* Protein LM: ESM-2 (3B or 15B parameters)
+
+## Feature Engineering
+* TF-IDF pre-filtering for k-mer motifs
+* Contextual embeddings for structural motifs
+
+## Integration Strategy
+* Hybrid attention-GNN fusion for omics alignment
+* Contrastive loss for RNA-protein embedding alignment
+* Graph propagation for ligand-receptor signaling
+
 
 ## Tutorial Notebooks
 - 01-13
