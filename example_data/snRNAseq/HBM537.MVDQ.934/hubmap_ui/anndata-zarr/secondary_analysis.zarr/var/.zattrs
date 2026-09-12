@@ -1,0 +1,17 @@
+{
+    "_index": "_index",
+    "column-order": [
+        "hugo_symbol",
+        "n_cells",
+        "highly_variable",
+        "means",
+        "dispersions",
+        "dispersions_norm",
+        "mean",
+        "std",
+        "marker_genes_for_heatmap",
+        "top_highly_variable"
+    ],
+    "encoding-type": "dataframe",
+    "encoding-version": "0.1.0"
+}

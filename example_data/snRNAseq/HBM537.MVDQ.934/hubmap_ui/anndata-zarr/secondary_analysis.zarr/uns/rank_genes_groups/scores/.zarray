@@ -1,0 +1,73 @@
+{
+    "chunks": [
+        6525
+    ],
+    "compressor": {
+        "blocksize": 0,
+        "clevel": 5,
+        "cname": "lz4",
+        "id": "blosc",
+        "shuffle": 1
+    },
+    "dtype": [
+        [
+            "0",
+            "<f4"
+        ],
+        [
+            "1",
+            "<f4"
+        ],
+        [
+            "2",
+            "<f4"
+        ],
+        [
+            "3",
+            "<f4"
+        ],
+        [
+            "4",
+            "<f4"
+        ],
+        [
+            "5",
+            "<f4"
+        ],
+        [
+            "6",
+            "<f4"
+        ],
+        [
+            "7",
+            "<f4"
+        ],
+        [
+            "8",
+            "<f4"
+        ],
+        [
+            "9",
+            "<f4"
+        ],
+        [
+            "10",
+            "<f4"
+        ],
+        [
+            "11",
+            "<f4"
+        ],
+        [
+            "12",
+            "<f4"
+        ]
+    ],
+    "fill_value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+    "filters": null,
+    "order": "C",
+    "shape": [
+        26097
+    ],
+    "zarr_format": 2
+}

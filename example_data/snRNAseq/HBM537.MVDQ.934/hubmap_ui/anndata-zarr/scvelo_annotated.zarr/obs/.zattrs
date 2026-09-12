@@ -1,0 +1,14 @@
+{
+    "_index": "_index",
+    "column-order": [
+        "n_genes",
+        "initial_size_unspliced",
+        "initial_size_spliced",
+        "initial_size",
+        "n_counts",
+        "leiden",
+        "velocity_self_transition"
+    ],
+    "encoding-type": "dataframe",
+    "encoding-version": "0.1.0"
+}

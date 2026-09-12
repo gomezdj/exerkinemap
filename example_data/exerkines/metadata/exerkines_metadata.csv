@@ -1,0 +1,3 @@
+exerkine_id,gene_symbol,description,sequence_file
+# Example row (uncomment and edit):
+# EXK0001,IL6,Interleukin-6,../sequences/exerkines_transcripts.fasta.gz
