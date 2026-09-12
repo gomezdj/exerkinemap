@@ -1,7 +1,3 @@
-Here is a revised, streamlined version of your `README.md`. It strips out the heavy architectural math to focus directly on the value proposition, highlights GDM and MoTrPAC as requested, and gets the user straight into action.
-
----
-
 # EXERKINEMAP
 
 **EXERKINEMAP** is a multimodal computational framework for mapping exercise-responsive molecular signaling and intercellular crosstalk.
