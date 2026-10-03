@@ -1,7 +1,8 @@
 # EXERKINEMAP
 
-**EXERKINEMAP** is a multimodal computational framework for mapping exercise-responsive molecular signaling and intercellular crosstalk.
+EXERKINEMAP (EXERcise KINEmatics Multiomics single-cell Analysis and spatial omics holistic modeling and maPping) is a computational framework for modeling how exercise-responsive molecular signals move between cells, tissues, and organs. It combines genomic and protein language models, single-cell and spatial omics, and wearable telemetry in a stateful virtual cell world model: an encoder, a transition operator, and a decoder, with a causal-set structure that restricts every prediction to its causal past. The model grows along two axes: a virtual cell bank across cell types, genotypes, and conditions (healthy control, GDM, T2D, CVD, obesity), and a composition from cells to tissues, organs, and the whole person, including the fetal–maternal interface. A forward map predicts the signaling response to an intervention, and an inverse map proposes exerkine sequences that move cell states toward a healthy reference.
 
+Suggested topics: bioinformatics, single-cell, spatial-omics, foundation-models, genomic-language-model, protein-language-model, virtual-cell, world-model, exercise-physiology, multi-omics
 By integrating genomic/protein language models with single-cell and spatial omics, EXERKINEMAP allows you to input target molecular sequences to identify and map candidate exerkines. It is heavily optimized for exploring exercise-responsive physiological adaptations—such as evaluating exerkine signaling for Gestational Diabetes Mellitus (GDM)—using multi-modal datasets from [MoTrPAC (rat and human)](https://motrpac-data.org).
 
 ## The Pipeline
