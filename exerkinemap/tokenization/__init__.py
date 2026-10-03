@@ -1,6 +1,6 @@
 """Tokenization utilities for EXERKINEMAP sequence modeling."""
 
-from .characterization import CharacterTokenizer, tokenize_characters
+from .character import CharacterTokenizer, tokenize_characters
 from .kmer import KMerTokenizer, tokenize_kmers
 from .bpe import BpeTokenizer, tokenize_bpe
 from .wordpiece import WordPieceTokenizer, tokenize_wordpiece

@@ -26,3 +26,4 @@ seaborn==0.12.2
 scikit-image==0.18
 mlxtend==0.24.0
 setuptools==63.4.1
+curated-tokenizers

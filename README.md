@@ -17,7 +17,7 @@ Map your target sequences and generate exerkine communication networks in a few 
 ### 1. Install Dependencies
 
 ```bash
-conda create -n exerkinemap python=3.11 -y
+conda create -n exerkinemap 
 conda activate exerkinemap
 pip install --upgrade pip
 pip install -r requirements.txt
@@ -45,6 +45,55 @@ python run_exerkinemap.py --input data/raw/sequences/ --output results/
 ## Tutorials & Advanced Usage
 
 For custom single-cell/spatial preprocessing, custom GLM tokenization, or building specialized ligand-receptor databases, check out the notebooks in the `tutorials/` directory.
+
+## Tokenization Ablation and One-Hot Control
+
+Run a matched binary sequence-classification benchmark from an empirical CSV with `sequence` and `label` (`0` or `1`) columns. EXERKINEMAP does not ship this labeled table: it must be assembled from a prespecified sequence-to-phenotype or regulatory task (for example, MoTrPAC-linked differential exercise labels) before benchmarking. The runner uses a stratified train/validation/test split, trains learned vocabularies only on the training sequences, and gives each tokenization arm the same linear-model optimization budget. It reports a position-aware one-hot supervised control alongside character, non-overlapping codon 3-mer, overlapping 6-mer, BPE, unigram, and WordPiece tokenization.
+
+```bash
+python -m exerkinemap.benchmarks.tokenization_ablation \
+  --input /path/to/empirical_sequence_labels.csv \
+  --output results/benchmarking/tokenization_ablation.csv
+```
+
+The CSV contains per-method accuracy, AUROC, AUPRC, Brier score, feature count, and fit time. A same-stem JSON file records the evaluation configuration. These results are empirical outputs; the command does not populate results with placeholder scores.
+
+The default benchmark caps every sequence at 512 nt using a 5-prime (`prefix`) window and caps learned-tokenizer vocabulary training at 25,000 characters. Both settings are recorded in the JSON metadata. Choose a window that matches the prespecified biological task; use `--long-sequence-policy error` to reject rather than truncate long sequences.
+
+### Raw controls
+
+Keep raw negative controls in [sequence_controls.csv](./data/raw/benchmarking/sequence_controls.csv). Each `control_definition` must state whether a control is empirical, technical, or reference-derived:
+
+```csv
+control_id,species,sequence,refseq_accession,source_url,control_definition
+```
+
+Build a benchmark-only processed file by selecting positives explicitly from the RefSeq candidate catalog:
+
+```bash
+python -m exerkinemap.benchmarks.sequence_manifest \
+  --positive-entity-id FGF19 \
+  --positive-entity-id RARRES2 \
+  --positive-entity-id LEP \
+  --controls data/raw/benchmarking/sequence_controls.csv \
+  --candidates data/processed/refseq_sequence_manifest.csv \
+  --output data/processed/benchmarks/gdm_sequence_benchmark.csv
+```
+
+The builder requires at least three positive records and three raw controls, preserves control provenance, and rejects controls whose sequence duplicates a selected positive. Run tokenization ablation against the resulting processed benchmark file, not the all-positive candidate reference catalog. A benchmark built with reference-derived controls is a technical sequence baseline and must not be presented as evidence of exercise responsiveness or causal biology.
+
+## GDM Candidate Reference and RefSeq Refresh
+
+[gdm_exerkine_candidates.csv](./data/reference/gdm_exerkine_candidates.csv) is a typed catalog of the GDM-network candidates. It includes gene products, receptors, metabolites, reactive species, protein complexes, pathways, extracellular-vesicle cargo, and unresolved aliases. Only unambiguous protein-coding genes receive human and rat RefSeq mRNA records; other entities remain in the manifest with blank sequence fields and an explicit `resolution_status`.
+
+Refresh [refseq_sequence_manifest.csv](./data/processed/refseq_sequence_manifest.csv) from NCBI with a contact email:
+
+```bash
+python -m exerkinemap.scripts.refresh_refseq_manifest \
+  --email you@example.org
+```
+
+The resulting manifest is a candidate reference, not an empirical binary benchmark. Its `label=1` means candidate-list membership; it does not establish exercise responsiveness or causal activity. Do not use it as the tokenization-ablation input until a prespecified empirical negative/control cohort has been added.
 
 ## License
 

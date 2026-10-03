@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "exerkinemap"
-version = "1.0.0"
+version = "0.1.0"
 description = "EXERKINEMAP: Exercise-responsive molecular signaling mapping."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -47,12 +47,5 @@ dev = [
 
 license = { file = "MIT" }
 
-[tool.setuptools]
-packages = ["exerkinemap"]
-
-[tool.setuptools.package-dir]
-"" = "src"
-"exerkinemap" = "exerkinemap"
-
-[tool.setuptools]
-packages = ["exerkinemap", "workflows"]
+[tool.setuptools.packages.find]
+include = ["exerkinemap*"]

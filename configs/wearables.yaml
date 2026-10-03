@@ -1,0 +1,25 @@
+schema:
+  subject_id: subject_id
+  timestamp: timestamp
+  signal: signal
+  value: value
+  source: source
+  unit: unit
+causal_windows:
+  default_window: 30min
+  min_periods: 1
+  interval: "(end - window, end]"
+sources:
+  cgm:
+    signal: glucose_mg_dl
+    unit: mg/dL
+  spo2:
+    signal: spo2_percent
+    unit: percent
+  cardiovascular:
+    signal: heart_rate_bpm
+    unit: bpm
+gate:
+  minimum_weight: 0.5
+  maximum_weight: 1.5
+  acute_illness_weight: 1.0
