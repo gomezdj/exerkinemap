@@ -48,6 +48,36 @@ python run_exerkinemap.py --input data/raw/sequences/ --output results/
 
 ```
 
+# EXERKINEMAP: Multi-Modal Virtual Cell World Model
+
+EXERKINEMAP is a computational framework for spatial omics and exercise kinematics mapping. It constructs a stateful virtual cell world model for exercise-responsive signaling, utilizing genomic language models (gLM) and protein language models (pLM) for sequence generation, spatial ligand–receptor communication, and causal-set propagation from the cellular level to the whole-person physiome.
+
+## Omics Foundation Model (FM) Architecture
+
+EXERKINEMAP integrates a specialized three-stage Omics Foundation Model pipeline (`exerkinemap/foundation_model/`) to parse complex, multimodal biological data into cohesive physiological representations:
+
+1. **Pre-training (`pretraining.py`):** The model performs self-supervised learning on massive, unlabelled structural and biological datasets. It utilizes transformer neural networks to convert raw nucleotide (`ExerkineRNA`) and amino-acid (`ExerkineProtein`) sequences into algebraic tokens mapped via positional encoders, establishing a baseline understanding of biological sequence grammar.
+2. **MoTrPAC-Anchored Fine-Tuning (`finetuning.py`):** To ensure physiological accuracy, the sequence generation tasks for exercise response targets bypass older model repositories and focus exclusively on high-resolution data from the Molecular Transducers of Physical Activity Consortium (MoTrPAC). This supervised fine-tuning anchors the learned embeddings strictly to empirical, multi-tissue expression data resulting from physical exercise stimuli.
+3. **Prompting and Execution (`prompting.py`):** Through human prompting and Reinforcement Learning with Human Feedback (RLHF), the fine-tuned LLM applies its contextualized biological grammar to execute precise downstream biomedical tasks.
+
+## Specialized Downstream Tasks
+
+The `exerkinemap/tasks/` module isolates the model's physiological outputs, applying the foundation model's predictive capabilities to hypothesize novel exerkine sequences and map dynamic physical adaptations:
+
+* **Exercise-Responsive Biomarker Discovery:** Extracts digital biomarkers from the mapped latent space and cross-references these computationally derived molecular signatures with the Exerkine Atlas for physiological validation.
+* **DNA & Protein Variant Prediction:** Generates novel exerkine sequences and predicts complex protein interactions to derive predictive ligand-receptor binding affinities for spatial communication networks.
+* **Personalized Medicine & Virtual Cell Mapping:** Synthesizes patient-specific physiological profiles by tracking causal-set propagation. The model generates dynamic virtual cell state maps that chart molecular transitions from a sedentary baseline to a healthy, exercise-adapted state.
+
+## Execution Workflows
+
+The repository workflows cleanly separate the foundation model training stages from standard spatial-omics alignment, ensuring MoTrPAC data prioritization:
+
+* `01_download_data.py`: Ingests external datasets and prepares local environments.
+* `02_pretrain_omics_fm.py`: Executes the self-supervised pre-training pipeline on generalized large-scale datasets.
+* `03_finetune_motrpac_fm.py`: Executes supervised fine-tuning utilizing validated MoTrPAC targets.
+* `04_build_sequence_reference.py`: Constructs the sequence reference libraries for alignment.
+* `05_prompt_specialized_tasks.py`: Runs human prompts and inference logic for downstream tasks like variant prediction or biomarker identification.
+
 ## Tutorials & Advanced Usage
 
 For custom single-cell/spatial preprocessing, custom GLM tokenization, or building specialized ligand-receptor databases, check out the notebooks in the `tutorials/` directory.
