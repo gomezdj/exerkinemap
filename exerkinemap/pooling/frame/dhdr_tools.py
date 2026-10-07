@@ -1,6 +1,6 @@
 """Compatibility re-exports for the moved DHDR wearable loaders."""
 
-from exerkinemap.wearables.dhdr_tools import (
+from Exerkinetics.wearables.dhdr_tools import (
     load_dhdr_cardiovascular_csv,
     load_dhdr_cgm_csv,
     load_dhdr_covid_csv,

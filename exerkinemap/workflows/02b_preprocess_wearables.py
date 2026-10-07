@@ -6,8 +6,8 @@ import argparse
 import logging
 from pathlib import Path
 
-from exerkinemap.wearables.dhdr_tools import load_dhdr_signal_csv
-from exerkinemap.wearables.flirt_features import causal_window_features
+from Exerkinetics.wearables.dhdr_tools import load_dhdr_signal_csv
+from Exerkinetics.wearables.flirt_features import causal_window_features
 
 
 LOGGER = logging.getLogger(__name__)

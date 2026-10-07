@@ -5,10 +5,10 @@ import pandas as pd
 import pytest
 
 from exerkinemap.pooling.frame.dhdr_tools import load_dhdr_cgm_csv
-from exerkinemap.wearables.flirt_features import causal_window_features
-from exerkinemap.wearables.gate import ExtrinsicGate, apply_illness_mask, modulate_scores
-from exerkinemap.wearables.posture import attach_deep_postures
-from exerkinemap.wearables.schema import WearableSchemaError, normalize_wearable_frame
+from Exerkinetics.wearables.flirt_features import causal_window_features
+from Exerkinetics.wearables.gate import ExtrinsicGate, apply_illness_mask, modulate_scores
+from Exerkinetics.wearables.posture import attach_deep_postures
+from Exerkinetics.wearables.schema import WearableSchemaError, normalize_wearable_frame
 
 
 def test_cgm_loader_normalizes_the_common_wearable_schema(tmp_path) -> None:

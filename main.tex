@@ -1,0 +1,610 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{tcolorbox}
+\pagestyle{myheadings}
+\markright{} % Leaves header text blank, placing page number on top right
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{xcolor}
+\usepackage{caption}
+
+\title{EXERKINEMAP: Virtual Cell World Model for Mapping Exerkine Networks and a gLM-pLM Sequence Generator for MoTrPAC Exerkines List}
+\author{Daniel Gomez}
+\date{October 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Abstract}
+Background
+Methods
+Results
+Conclusion
+\section{Introduction}
+Establish the systemic complexity of exercise physiology and justify the necessity of a multimodal foundation model. \newline
+* The Systemic Exercise Responsome \newline
+* The Gap in Spatial and Sequence Integration \newline
+* The EXERKINEMAP Objective \newline
+
+EXERKINEMAP (EXERcise KINEmatics Multiomics single-cell Analysis and sPatial omics integration and maPping) is a computational framework for mapping exercise-responsive molecular signaling across cells, tissues, and organs. Additionally, EXERKINEMAP generates sequences, integrates single-cell omics, spatial omics and is both genomic and protein language models, ligand–receptor interactions, and graph-based signal propagation to characterize the exerkines and identify candidate exerkines, ligands, receptors, and pathway maps. EXERKINEMAP also supports generative modeling for exerkine design, enabling exploration of candidate exercise-responsive ligands and synthetic sequence creation. Generated biologically plausible nucleotide and amino-acid sequences that preserve structural motifs, secretion signals, and ligand-receptor compatibility by integrating codon-aware genomic language models (gLMs), codon language models (cLMs), and protein language models (pLMs). This generative capability allows EXERKINEMAP to propose novel exerkines and evaluate their potential roles in exercise-responsive signaling networks.
+
+\textbf{Research Objectives} \newline
+EXERKINEMAP is designed to:
+update with problem solutions 
+Identify exercise-responsive exerkines, ligands, and receptors.
+Represent molecular sequences using GLM and PLM embeddings.
+Integrate sequence information with single-cell and spatial omics.
+Quantify ligand–receptor communication between cells.
+Model spatial and temporal exerkine signal propagation.
+Infer downstream pathway activation.
+Construct intraorgan and interorgan exercise-responsive communication maps.
+Explore candidate molecular sequences using generative language models.
+
+\textbf{Applications} \newline
+Potential applications include:
+* Exercise physiology and the exercise responsome
+* GDM, T2D, CVD, and obesity
+* Cancer and tumor–host communication
+* Aging and sarcopenia
+* Metabolic disease
+* Cardiovascular biology
+* Neurobiology and neurodegeneration
+* Placenta / Reproduction biology
+* Multi-organ systems biology
+
+\textbf{Project Status}
+\textbf{Research / Development} \newline
+EXERKINEMAP is under active development. Current work focuses on integrating GLM, CLM, PLM, single-cell, spatial omics, ligand–receptor inference, and graph-based modeling into a scalable computational framework.
+
+\subsection{AIDO Framing and Two Axes of Expansion}
+EXERKINEMAP is positioned as an AI-driven digital organism (AIDO) framework: a family of action-conditioned biological world models rather than a collection of independent predictors. Its scope expands along two explicit axes. The \textit{vertical} axis is a virtual-cell bank spanning cell types, genotypes, and physiological or disease conditions; each member retains its own molecular and environmental context. The \textit{horizontal} axis composes representations from cell to tissue, organ, and whole person. The two axes meet when an intervention is evaluated in a condition-specific cell state and then propagated through its tissue and organismal context. This framing makes cross-scale integration a testable causal modeling problem, rather than a post hoc aggregation of modality-specific predictions \cite{xing2026}.
+
+\section{Results}
+
+\subsection{Comparative Model Benchmarking}
+The benchmark will compare EXERKINEMAP with pretrained sequence models (\textit{gLM}: DNABERT-2, Nucleotide Transformer-v2, HyenaDNA, OmniNA, and EVE; \textit{cLM}: cdsFM; \textit{pLM}: ProteinMPNN, LigandMPNN, and ProteinDPO) and with task-specific controls. In particular, every regulatory-sequence task will include a tuned, supervised one-hot model with the same train/validation/test splits, augmentation policy, receptive-field budget, and hyperparameter-search budget as EXERKINEMAP. Both a simple convolutional classifier and the strongest feasible supervised architecture will be reported. This control is necessary because pretrained gLM embeddings do not consistently exceed carefully tuned one-hot supervised models on regulatory genomics tasks \cite{tang2025}.
+
+Results will distinguish frozen-embedding probes, parameter-efficient adaptation, and full fine-tuning. Primary outcomes are task-appropriate AUROC, AUPRC, calibration, and confidence intervals across prespecified splits; generative outcomes additionally include sequence conservation, alignment, motif retention, and ligand--receptor compatibility. No claim of foundation-model benefit will be made unless it exceeds the matched one-hot control on held-out data.
+
+\subsection{Tokenization Ablation}
+The genomic encoder will be trained and evaluated with character-level, non-overlapping 3-mer codon, overlapping 6-mer, BPE, unigram, and WordPiece tokenization. All variants will use a matched backbone, token budget, pretraining corpus, masking schedule, and downstream protocol; vocabulary size, sequence truncation rate, throughput, and parameter count will be reported. The analysis is stratified by regulatory, coding, and fine-grained amino-acid-related tasks, because codon-aligned 3-mers and larger k-mers make different biological assumptions. This ablation tests whether the codon-aware choice is supported by EXERKINEMAP data rather than presumed from prior work \cite{boshar2024,veiner2026}.
+
+\subsection{Parameter Scaling and Compute Efficiency}
+Demonstrate empirical justification for scaling the model size from million (EXERKINEMAP-110M, EXERKINEMAP-500M) to billions (EXERKINEMAP-1.7B, EXERKINEMAP-2.3B) of parameters. 
+* Loss vs. Parameter Scaling Curves
+* Compute-Optimal Efficiency 
+
+\subsection{Layerwise Latent Representation and Clustering (ARI Analysis)}
+Report how deep contextual representations evolve across architectural depth (Embedding Block, EB, through Transformer layers $T_1,\dots,T_{24}$).
+* Layerwise ARI Line Plot
+* Fit-tSNE Dimensionality Visualizations
+
+\subsection{Generative Closed-Loop Optimization and Convergence}
+The closed-loop inverse-design experiment will report the score distribution for $J(q)$ and $\rho_q$, convergence of the optimization trajectory, and the rate at which proposed sequences meet prespecified molecular and safety constraints. It is evaluated as an inverse-control task: for a target region in healthy-reference state space, rank interventions by predicted attainment and test whether the high-ranked set is enriched for validated or independently supported hits relative to an equal-budget baseline screen.
+
+\subsection{Virtual-Cell Evaluation Criteria}
+Virtual-cell evaluation follows four complementary criteria \cite{xing2026}. \textit{Cross-modal coherence} tests whether jointly predicted RNA, protein, spatial, and phenotype readouts agree with observed cross-modal relationships. \textit{Multi-step rollout stability} measures bounded error and biological plausibility over sequential, time-ordered interventions rather than only one-step accuracy. \textit{Held-out and combinatorial perturbations} assess transfer to unseen single perturbations and combinations whose components were observed separately during training. Finally, \textit{inverse-control enrichment} evaluates whether the closed-loop objective $J(q)$ preferentially recovers interventions that move the state into the healthy-reference target region, compared with random, frequency-based, and matched baseline screens. These criteria are reported separately by cell type, genotype, condition, and scale.
+
+\subsection{Downstream Spatial Communication and Perturbation Validation}
+Evaluate the model's ability to map cellular signaling networks in exercise-responsive states.
+* Spatial Graph Recovery ($\mathcal{G}_E$)
+* Cell-Type Annotation and Perturbation Effect
+
+\text{notes}
+Generative Exploration of Novel Exerkines
+This is where you show:
+* examples of generated sequences
+* motif preservation
+* ligand–receptor compatibility scores
+* pathway activation predictions
+* spatial communication maps for synthetic exerkines
+
+Recommended: A tiered architecture approach is best. 
+
+EXERKINEMAP-110M -500M: Ideal for fast, closed-loop iterations, rapid calculation of the exercise response score ($\rho_q$), and running efficiently within Gemini Enterprise Agent Notebooks. 
+
+EXERKINEMAP-1.7B -2.3B: The primary heavy-weight foundation model, utilized for large-scale pre-training across the 5 superkingdom species (human, rat, mouse, horse, yeast) and executing complex zero-shot downstream tasks, such as functional element generation or predicting perturbation effects in single-cell omics spaces.
+
+\section{Methods}
+
+\subsection{Notation and Problem Definition}
+\subsubsection{Notation}
+Let the following sets define the biological entities modeled by EXERKINEMAP: $C = {c_1, c_2, ..., c_N}$ denote the set of $\mathcal{N}$ single cells or spatially resolved cellular units. $L={l_1,l_2,...,l_k}$ denote the set of candidate ligands. $R = {r_1,r_2,...,r_M}$ denote the set of receptors. $E \subseteq L$ denote the subset of exercise-responsive ligands, referred to as exerkines. Let $P = {p_1,p_1,...,p_Q}$ denote the set of biological pathways or functional programs. Let $\mathcal{LR}\subseteq L \times R$ denote the set of known or predicted ligand-receptor pairs. For each $c_i$, define: $c_i = (x_i,s_i,\tau_i)$,
+where \newline
+* $x_i$ is the molecular expression profile, \newline
+* $s_i \in \mathbb{R}^d$ is the spatial coordinate, \newline
+* $\tau_i^d$ is the cell type or cellular state. \newline
+The single-cell expression matrix is: $\mathbf{X} \in \mathbb{R}^{N \times G}$, where $\mathbf{G}$ is the number of genes. For ligand $l_k$ and receptor $r_m$:
+$x_i(l_k)$ denote ligand expression in cell $c_i$, and
+$x_j(r_m)$ denote receptor expression in cell $c_j$.
+
+\textbf{Molecular Sequence Space}. For each molecular entity $q \in L \cup R$, define a nucleotide or amino-acid sequence: $a_q^N = (a_1,...,a_{n_q}$ for DNA/RNA molecules and $a_q^P = (a_1,...,a{m_q})$ for protein sequences. The nucleotide alphabet is: $\mathcal{A}_N = {A,C,G,T,U}$, and the amino-acid alphabet is: $\mathcal{A}_P = {A,R,N,D,C,Q,E,G,H,I,L,M,F,P,S,T,W,Y,V}$.
+
+\textbf{Language-Model Representations}. Let $\mathcal{T}_N$ be the nucleotide/RNA tokenizer and $\mathcal{T}_P$ the protein tokenizer. The nucleotide sequence is transformed into a contextual representation using a BERT-style genomic language model: $z_q^N = f_{\theta_N} (\mathcal{T_N}(a_q^N))$
+where $f_{\theta_N}$ represents the GLM encoder. For protein sequences, define: $z_q^P = f_{\theta_P}(\mathcal{\tau_P}(a_q^P))$ where $f_{\theta_P}(\mathcal{\tau_P}(a_q^P))$ where $f_{\theta_P}$ denotes the protein language-model encoder. The PLM can subsequently provide the generative distribution: $p_{pLM}(a_q^P) = \Pi_{t=1}^{m_q}p(a_t|a_{<t})$ for candidate protein sequence generation.
+
+\subsubsection{Problem Definition}
+EXERKINEMAP Problem
+Given a multimodal biological dataset \newline
+
+$\mathcal{D} = {A,X,S,Y,\mathcal{LR}}$, \newline
+
+where: \newline
+* A represents nucleotide and protein sequences \newline
+* X represents single-cell molecular expression matrix , \newline
+* S represents spatial coordinates, \newline
+* Y represents exercise phenotypic/physiological markers, \newline
+* $\mathcal{LR}$ represents known ligand-receptor interactions, \newline
+the objective of EXERKINEMAP is to learn a multimodal representation of exercise-responsive molecular signaling and infer the spatially resolved communication network: $\mathcal{G}_E = (C,\epsilon_E, W_E)$ such that the model maps: 
+
+Sequence  $\rightarrow$ Language Representation $\rightarrow$ Exercise Regulation  $\rightarrow$ Ligand-Receptor Interaction  $\rightarrow$ Spatial Communication  $\rightarrow$ Pathway Activation while supporting the inverse problem of generating candidate molecular sequences consistent with an inferred exercise-responsive biological state. Formally $\mathcal{F}_{EX}: (A, X, S, Y, \mathcal{LR})  \rightarrow (E,Z,\mathcal{G_E}, F, A_P)$ \newline
+where: \newline
+* E = predicted exerkines, \newline
+* Z = molecular language-model representations, \newline
+* $\mathcal{G}_E$ = exerkine communication graph, \newline
+* F = propagated signaling state, \newline
+* $A_P$ = pathway activation state. \newline
+The inverse problem is: $(X,S,Y, \mathcal{G}_E) \rightarrow \hat{A}^N, \hat{A}^P$ where $\hat{A}^N$ and $\hat{A}^P$ are candidate nucleotide/RNA and protein sequences generated by the corresponding language models. 
+
+\subsubsection{Encoder--Transition--Decoder World Model}
+Let $o_t$ denote the multimodal observation at event time $t$, including sequence embeddings, single-cell and spatial measurements, wearable features, and condition labels. An encoder $\mathsf{E}_{\eta}$ maps observations to a latent state on a learned manifold, $z_t=\mathsf{E}_{\eta}(o_{\leq t})\in\mathsf{Z}$. An intervention vector $\mathbf{a}_t$ contains the permitted molecular, exercise, diet, lifestyle, or genotype-conditioned actions. The state evolves according to the action-conditioned transition
+\begin{equation}
+z_{t+1}=\mathsf{T}_{\psi}(z_t,\mathbf{a}_t), \qquad z_t\in\mathsf{Z},
+\end{equation}
+and a decoder $\mathsf{D}_{\omega}$ reconstructs or predicts each observable modality,
+\begin{equation}
+\widehat{o}_{t+1}=\mathsf{D}_{\omega}(z_{t+1}).
+\end{equation}
+Here $\mathsf{Z}$, $\mathsf{T}$, and $\mathsf{D}$ deliberately replace the symbols $\mathcal{M}$ and $F$, which are already used for masked token positions and propagated signaling state, respectively. The healthy reference density $p_{\mathcal{H}}$ defines a target region $\mathsf{R}_{\mathcal{H}}=\{z\in\mathsf{Z}:p_{\mathcal{H}}(z)\geq\tau_{\mathcal{H}}\}$. Inverse design selects actions or sequences whose decoded rollout reaches $\mathsf{R}_{\mathcal{H}}$ while satisfying the sequence, signaling, and safety terms of $J(q)$. Thus the existing healthy-reference term specifies the control target rather than merely serving as an auxiliary score.
+
+\subsubsection{Formalizing the EXERKINEMAP Problem Notation}
+\subsubsection{The Dual-Generative Loss Functions}
+For the nucleic acid generation, the codon-aware genomic language model (gLM) predicts masked regions: 
+
+\begin{equation}
+L_{gLM} = -\mathbb{E_G}[\Sigma_{i\in K}logP(g_i | g_{\setminus K}); \theta)]
+\end{equation}
+For the protein-level conditional generation, the ESM-2 Masked Gibbs Sampler acts as the protein Language Model (pLM):
+\begin{equation}
+L_{pLM} = -\mathbb{E_p}[\Sigma_{j\in M}logP(p_j]|P\setminus M;\phi)]
+\end{equation}
+
+\subsubsection{The Multimodal Objective Function J(q)}
+During the closed-loop inverse problem (generating a sequence $q$ for a defined MoTrPAC exercise state), the model optimizes the sequence through the weighted objective function: 
+
+\begin{equation}\label{eq:J}
+\begin{split}
+J(q) ={}& \lambda_E \cdot Score_{exercise(q)} + \lambda_{SP} \cdot Score_{spatial(q)} \\
+&+ \lambda_{LRI} \cdot Score_{(q)} + \lambda_{sc} \cdot Score_{sc}, \quad \lambda_E = 0.30,\ \lambda_{SP} = 0.20.
+\end{split}
+\end{equation}
+
+\subsubsection{Sequence Optimization and Convergence}
+Candidate sequences ($\hat{A}^N$ for RNA, $\hat{A}^P$) are retained by the Model Context Protocol (MCP) tool integration layer only if they satisfy the classification probability threshold: 
+\begin{equation}
+\rho_q=\sigma(J(q)) \geq \theta_E
+\end{equation}
+
+The AI agent refines the sequence by minimizing the Mean Squared Error (MSE) of the predicted biological state until the inverse problem converges below the error threshold: 
+\begin{equation}
+\left\|State_t(\hat{A}) - State_{target}\right\|^2 < \epsilon
+\end{equation}
+
+\subsubsection{EXERKINEMAP Genomics Sequence Generation (CaLM-style gLM)}
+To support the generative design of exerkines, EXERKINEMAP extends a CaLM-style codon-aware genomic language model (gLM) across mammalian and eukaryotic references (human, mouse, rat, horse, and yeast). By masking codon spans and iteratively sampling replacements, the gLM generates candidate exerkine nucleotide sequences that preserve reading-frame structure, codon usage bias, and regulatory motifs essential for secretion and exercise responsiveness. The Masked Language Modeling (MLM) loss function for the gLM is defined as: 
+
+$L_{gLM}(\theta)=-\mathbb{E}_G\left[\sum_{i\in K}\log P(g_i \mid g_{\setminus K};\theta)\right]$
+
+\subsubsection{EXERKINEMAP Protein Sequence Generation (ESM-2 Gibbs Sampling)}
+For protein-level generation, EXERKINEMAP employs masked Gibbs sampling utilizing ESM-2. Targeted variable regions of the exerkine sequence are masked, while critical structural motifs and receptor-binding residues remain fixed. ESM-2 predicts logits for the masked positions, iteratively sampling amino acids to construct stable, biologically plausible variants. This facilitates conditional protein design guided by genomic context, structural constraints, and exercise-responsive multi-omics signatures.
+
+$L_{pLM}(\phi) = -\mathbb{E}_P\left[\sum_{j\in M}\log P(p_j \mid p_{\setminus M};\phi)\right]$
+
+\subsubsection{Definition 1: Exercise-Responsive Molecular Representation}
+For a molecular entity $q \in L \cup R$, its nucleotide and protein sequences are transformed into contextual feature representations: $z_q^N = f_{\theta_N} (\tau_N((a_q^N))$. The multimodal molecular representation fuses these distinct modalities: 
+
+$z_q = \Phi (z_q^N, z_q^P)$
+
+where $\Phi$ is a learned multimodal fusion function. The exercise-responsive probability of entity $q$ is defined conditionally upon its sequence representation and spatial-cellular expression state $(X,Y)$:
+
+$\rho_q = P(E_q = 1|z_q,X,Y)$
+
+The predicted exerkine set is therefore: $E = {l_k \in L : \rho_q \geq \theta_E}$. An exerkine is defined not only by differential expression, but by the joint evidence of its language representation, molecular expression, and exercise responsiveness. 
+
+\subsubsection{EXERKINEMAP Mathematical Model - Genomic Language Model (GLM)}
+The Genomic Language Model (GLM) within the EXERKINEMAP framework is designed to map symbolic nucleotide sequences into highly specific, contextual numerical representations. For a targeted exerkine gene locus $g_k$, the sequence is defined over the nucleotide alphabet $\mathcal{A_N}={A,C,G,T,U}$ as $a^{(g_k)} = (a_1, a_2,...,a_M)$. To process this, the model partitions the sequence is not overlapping the model partitions the sequence into overlapping $k-$mer tokens $T = (t_1,t_2,...,t_n)$ using a codon-aware vocabulary $V$. This vocabulary is dynamically adapted from a biological reference space $\mathcal{R}_{seq}$--encompassing reference genomes and exercise-response elements across human, mouse, rat, horse, monkey (non-human primates), bear, and yeast--using Byte-Pair Encoding (BPE) to iteratively merge frequent sequence motifs and capture specific regulatory elements. Each token $t_i$ is then projected into a continuous vector space as $e_i = E[t_i]$, utilizing a learned token embedding matrix $E \in \mathbb{R}^{\mathcal{V} \times d}$. To maintain strict sequence specificity and structural context, the initial sequence embedding $H^{(0)}$ fuses the token embeddings ($E_T$) with both positional embeddings ($E_P$) and a unique Gene Specificity Embedding ($E_G$), formally expressed $H_i^{(0)} = e(t_i) + p_i + g_k$. This critical fusion anchors any downstream generative variations specifically to the target exerkine locus. The representations are then processed through a BERT-style Transformer encoder spanning $L$ layers. At each layer, bidirectional sequence relationships are captured via a Multi-Head Self-Attention mechanism, defined as $Attention(Q,K,V)$ = softmax$\frac{QK^T}{\sqrt{d_k})V}$, which concatenates disparate regulatory and coding motifs to build a comprehensive biological context. The network is optimized via Masked Language Modeling (MLM), minimizing the negative log-likelihood of masked tokens given their surrounding context: $\mathcal{L}_{MLM} = \Sigma_{i\in\mathcal{M}} logP_{\theta}(t_i | T_{\setminus i})$. Upon traversing the encoder, the final token-level matrix $Z^N = H^{(L)}$ is pooled via a classification token into a single continuous feature vector $z^N = Z_{CLS}^N \in \mathbb{R}^d$, representing the global semantics of the sequence. This framework derives distinct structural embeddings for candidate exerkines ($z_{e_k}^N$), ligands ($z_{l_k}^N$), and receptors ($z_{r_m}^N$). Within this latent space, sequence homology and functional alignment are evaluated using cosine similarity, $S_N(a,b) = \frac{z_a^N*z_b^N}{||z_a^N || z_b^N ||}$. Furthermore, the model directly computes the biochemical binding compatibility between a ligand and receptor using a learned compatibility matrix $W_N$, yielding $\Gamma_{km}^N = \sigma((z_{l_k}^N)^TW_Nz_{r_m}^N)$. Ultimately, the GLM representation seamlessly integrates with cellular omics to construct a complete spatial communication network. The molecular sequence context is fused with single-cell transcription magnitudes $x_i(l_k)$ to form a multimodal cell-state representation $h_{i,(l_k)} = \Phi(x_{i(l_k)},z_{l_k}^N)$. This integration allows the standard ligand-receptor interaction score to be augmented with sequence compatibility, biological priors ($\alpha_{km}$), and spatial proximity ($K_{ij}^S$), generating the GLM-augmented score $\widetilde{S}_{ij}^{GLM} = x_i(l_k)x_j(r_m)\alpha_{km}\Gamma(km)^NK_{ij}^S$. By evaluating latent differences across exercise conditions to measure dynamic regulation, the model calculates a final multimodal exercise probability score, effectively, bridging foundational sequence generation with tissue-level spatial mapping within the broader EXERKINEMAP architecture. 
+
+\textbf{GLM Objective \& Sequence Specificity}. Let $\mathcal{A}_N = {A,C,G,T,U}$ denote the nucleotide alphabet, and let a sequence associated with a specific exerkine gene locus $g_k$ be represented as: $a^{(g_k)} = (a_1,a_2,...,a_M), a_t \in \mathcal{A}_N$. The objective of the GLM is to map the symbolic nucleotide sequence into a highly specific, contextual numerical representation, conditioned on its exact gene identity to main sequence specificity: \newline 
+\begin{equation}
+a^{(g_k)} \rightarrow T \rightarrow H^{(0)} \rightarrow Z^N. 
+\end{equation}
+\textbf{Sequence Tokenization}. Let $\mathcal{V} = {v_1,v_2,...,v_{|\mathcal{V}|}}$ denote the codon-aware vocabulary. The sequence is partitioned into tokens: \newline 
+\begin{equation}
+T = (t_1,t_2,...,t_n), t_i \in \mathcal{V}. 
+\end{equation}
+For a \textit{k}-mer representation (e.g., overlapping codons), $t_i = (a_i,a_{i+1},...,a_{(i+k-1)})$, yielding $n = M - k + 1$ tokens. \newline
+\textbf{Reference Adaptation}. The vocabulary adapts to a biological reference space $\mathcal{R}_{seq}$ containing reference genomes, transcriptomes, and specifically known exercise-responsive elements across multiple species (human, mouse, rat, horse, yeast) $\mathcal{V}=Tokenizer(\mathcal{R_seq})$. Using Byte-Pair Encoding (BPE), frequent sequence motifs are merged iteratively to capture specific exerkine regulatory elements. \newline
+\textbf{Token Embedding}. Each token $t_i$ maps to a continuous vector $e_i = E[t_i]$, where $E \in \mathbb{R}^{|\mathcal{V} \times d|}$ is the learned token embedding matrix. \newline
+\textbf{Contextual Genomic Representation}. A BERT-style Transformer encoder captures bidirectional sequence relationships. The representation at layer $l$ is iteratively updated: \newline 
+\begin{equation}
+H^{(l+1)} = \text{Transformer}(H^{(l)}) \text{ after } \mathcal{L} \text{layers, the final sequence matrix is } Z^N = H^{(L)} \in \mathbb{R}^{n\times d}. \newline
+\end{equation}
+\textbf{Self-Attention Mechanism}. \text{For matrices} $Q = HW_Q, K = HW_K, V = HW_V: A = \text{softmax}(\frac{QK^T}{\sqrt{d_k}}), \text{Attention}(Q,K,V) = AV$. \newline 
+\textbf{Multi-Head Attention}. To capture disparate regulatory and coding motifs simultaneously: \newline 
+\begin{equation}
+\text{MHA} = \text{Concat}(head_1,...,head_H)W_O
+\end{equation}
+\textbf{Positional \& Gene-Specific Representation}. To guarantee sequence specificity for individual exerkine genes, the initial embedding $H^{(0)}$ fuses token embeddings ($E_T$), positional embeddings ($E_P$), and a Gene Specificity Embedding ($E_G$): $H^{(0)}=E_T + E_P + E_G$, $H_i^{(0)}=e(t_i) +p_i + g_k$. This ensures the model anchors variations specifically to the target exerkine locus $g_k$.
+
+\textbf{Masked Language Modeling (MLM)}. Let $\mathcal{M}$ denote the set of masked token positions. The GLM minimizes the negative log-likelihood of masked tokens given their surrounding context: \newline 
+\begin{equation}
+\mathcal{L}_{MLM}=-\Sigma_{i\in \mathcal{M}} \log P_{\theta} (t_i | T\setminus i).
+\end{equation}
+Optimized via $\theta^* = \arg\min_{\theta}\mathcal{L}_{MLM}$. 
+
+\textbf{Contextual Sequence Embedding (Feature Representation)}. The token-level matrix $Z^N$ is pooled into a single continuous feature vector representing the entire sequence: \newline
+\begin{equation}
+a_z^N = Z_{CLS}^N \in \mathbb{R}^d.   
+\end{equation}
+
+\textit{GLM Representation of Exerkines}. For a candidate exerkine $e_k$, ligand $l_k$, and receptor $r_m$, specific sequence embeddings are derived: $z_{e_k}^N = f_{\theta_N} (a_{e_k})$, $z_{l_k}^N = f_{\theta_N}(a_{l_k})$, $z_{r_m}^N = f_{\theta_N}(a_{r_m})$.
+
+\textit{Sequence Similarity Inference}. Sequence homology and functional alignment are calculated within the latent space via cosine similarity: $S_{n(a,b)} = \frac{z_a^N \cdot z_b^N}{||z_a^N|| ||z_b^N||}$.
+
+\textit{GLM-Ligand-Receptor Compatibility}. The binding compatibility between a ligand and receptor is computed directly from their sequence embeddings usinga learned compatibility matrix $W_N$:
+$\Gamma_{km}^N = \sigma((z_{l_k}^N)^TW_Nz_{r_m}^N)$.
+
+\textit{Integration with Cell-Type Annotation \& Single-Cell Expression}. Sequence context is fused with cellular expression $x_i(l_k)$ for cell $c_i$: $h_{i,l_k} = \Phi(x_i(l_k),z_{l_k}^N)$. This defines both the molecular identity (GLM) and its transcription magnitude (scRNA-seq).
+
+\textit{GLM-Augmented Ligand-Receptor Score}. The standard interaction score $x_i(l_k)x_j(r_m)$ is augmented with biological priors $(\alpha_{km})$, sequence compatibility ($\Gamma^N_{km}$), and spatial proximity ($K^S_{ij}$).
+
+\textit{GLM-Single-Cell Multimodal Representation}
+\textit{GLM Representation of Exercise Regulation}
+\textit{GLM-Exerkine Score}
+\textit{GLM Output to EXERKINEMAP}
+\textit{GLM Position within the Complete EXERKINEMAP Architecture}
+
+\subsubsection{Analytical Protocol for Layerwise evaluation}
+To extract and evaluate the Adjusted Rand Index (ARI) feature representations across the 24 Transformer layers (T1-T24) and the Embedding Block (EB) in EXERKINEMAP, we must isolate the hidden states at each layer, aggregate the token embeddings, cluster the latent representations, and score them against established biological labels.
+
+[Layerwise Probing, Sequence Aggregation, Unsupervised Clustering, ARI Computation, Optimal Layer Selection, Dimensionality Visualization]
+
+\fbox{Algorithm 1: Genomic Language Model (gLM) Computational Protocol} \newline
+\textbf{Input}: Target nucleotide sequence $a^{(g_k)}$, reference sequence space $R_{seq}$, single-cell expression matrix $X$, spatial proximity matrix $K^S$. \newline
+\textbf{Output}: GLM-augmented spatial interaction score $\widetilde{S}_{ij}^{GLM}$, sequence-level exerkine probability $\rho_q$. \newline
+1. \textbf{Initialize Vocabulary}: Adapt the codon-aware vocabulary $\mathcal{V}$ from the biological reference space $R_{seq}$ using Byte-Pair Encoding (BPE).
+2. \textbf{Tokenize Sequence}: Partition the input sequence $a(g_k)$ into overlapping $k$-mer tokens $T = (t_1,t_2,...,t_n)$.
+3. \textbf{Construct Initial Embeddings:} Project tokens into continuous vectors $e_i = E[t_i]$. Fuse these with positional ($E_p$) and gene-specific ($E_G$) embeddings to anchor sequence identity: $H_i^{(0)} = e(t_i)+p_i+g_k$.
+4. \textbf{Encode Contextual Relationships:} Pass the initial embedding tensor $H^{(0)}$ through $L$ Transformer layers using Multi-Head Self-Attention. Optimize the weights by minimizing the Masked Language Modeling loss ($\mathcal{L}_{MLM}$).
+5. \textbf{Extract Sequence Features}: Pool the final hidden state matrix $H^{(L)}$ via the [CLS] token to extract the dense, global sequence feature vector $z^N \in \mathbb{R}^d$.
+6. \textbf{Compute Sequence Compatibility}:Calculate the biochemical binding compatibility between candidate ligands and receptors within the latent space using a learned compatibility matrix: $\Gamma_{km}^N = \sigma((z_{lk}^N)^T W_N z_{r_m}^N)$.
+7. \textbf{Execute Multimodal Fusion}: Concatenate the extract sequence vector $z_{l_k}^N$ with the corresponding single-cell transcription magnitude $x_i(l_k)$ to form the integrated cell-state representation $h_i,l_k$.
+8. \textbf{Calculate Augmented Spatial Interaction}: Compute the final communication score by multiplying expression magnitude, biological priors ($\alpha_{km}$), sequence compatibility ($\Gamma_{km}^N$), and spatial proximity $(K_{ij}):\widetilde{S}_{ij}^{GLM}(l_k,r_m = x_i(l_k)x_j(r_m)\alpha_{km}\Gamma_{km}^NK_{ij}^S$.
+
+\subsection{EXERKINEMAP architecture}
+The EXERKINEMAP architecture integrates a dual-language modeling framework, coupling a CaLM-style Genomic Language Model (gLM) for nucleotide sequences with ESM-2 Masked Gibbs Sampling for protein sequences, scaling through a deeply layer transformer encoder to synthesize and benchmark exercise-induced molecular signals. The structural foundation of the Genomic Language Model (GLM) maps high-dimensional MoTrPAC genomic sequences (human and rat) into computationally actionable biological representations. 
+[Reference Adaptation and Tokenization, Positional Representation, Contextual Sequence Embedding, BERT-Style Masked Language Modeling, Auto-Regressive Pre-training]
+\subsubsection{Reference Adaptation and Tokenization}
+Nucleotide inputs sourced from the MOTrPAC RNA-seq pipeline are tokenized using a codon-aware vocabulary. A sequence $S$ is tokenized in $N$ overlapping or strictly bounded codon tokens, defining the input sequence matrix. 
+\subsubsection{Positional Representation}
+To retain spatial sequence context, absolute or rotary positional embeddings (RoPE) are injected into the token matrix, ensuring the model distinguishes between upstream regulatory motifs and downstream coding regions.
+\subsubsection{Contextual Sequence Embedding}
+The model passes tokens through an Embedding Block (EB) to yield initial dimensional representations, which are subsequently processed across $L$ transformer layer $(T_1,T_2,...,T_{24})$. Each layer applies the standard attention mechanism: 
+
+$Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_k}})V$
+
+Followed by a Position-wise Feed-Forward Network:
+
+$FFN(x) = W_2max(0,W_1x+b_1 + b_2)$
+
+\subsubsection{BERT-Style Masked Language Modeling}
+The gLM learns nucleotide syntax by masking spans of codons $K$. The objective function minimizes the negative log-likelihood of the masked tokens given the surrounding genomic context: $L_{gLM} = -\mathbb{E}_G\left[\sum_{i\in K}\log P(g_i \mid g_{\setminus K};\theta)\right]$.
+
+\subsubsection{Auto-Regressive Pre-training}
+For generative tasks spanning 1.7 billion to 2.3 billion parameters, pre-training across the 91.7 million NCBI nucleotide sequences utilizes an auto-regressive generation paradigm taking the form: $<s>$ A T G ... exerkine receptor ... <output G C G ... exerkine receptor $</s>$. 
+
+\subsection{Exercise-Responsive Molecular Representation}
+The model condenses vast sequence data into functional exercise phenotypes and physiological markers defined by MoTrPAC. CLS Pooling and GLM Representation of Exerkines: A designated [CLS] token aggregates the sequence-level semantic meaning at the output of $T_{24}$. This pooled vector serves as the primary dense representation $Z_E$ of the candidate exerkine.Sequence Similarity Calculation: To compute structural and functional homology without relying exclusively on alignment tools like BLAST, EXERKINEMAP utilizes Cosine Similarity between the pooled embeddings of candidate generated sequences and reference databases. GLM-Ligand-Receptor Compatibility: The representation $Z_E$ is evaluated against known ligand-receptor pairs in the MoTrPAC proteomics pipeline. A compatibility matrix assesses the binding potential, forming the GLM-Augmented Ligand-Receptor Score.GLM Representation of Exercise Regulation \& Exerkine Score: The framework calculates the classification probability threshold, $\rho_q \ge \theta_E$, to filter molecules that exhibit significant exercise-induced expression signatures (e.g., acute exercise vs. resistance exercise).Integration with Cell-Type Annotation, Organ/Tissue Mapping, and Perturbation Tasks: The sequence representations are bridged with single-cell and spatial omics data ("Language of the Cell"). The model maps the generated sequences to tissue-specific coordinate graphs, allowing it to execute downstream cell-level tasks, such as predicting the perturbation effect of an exerkine on specific target organs.GLM Output to EXERKINEMAP: The final multi-dimensional vector, carrying both sequence generation probabilities and spatial communication constraints, is passed to the overarching multimodal objective function $J(q)$. The model condenses the massive sequence data into functional exercise phenotypes and physiological markers defined by MoTrPAC.
+
+[CLS Pooling and GLM Representation of Exerkines, Sequence Similarity Calculation, GLM-Ligand-Receptor Compatibility, GLM Representation of Exercise Regulation \& Exerkine Score, Integration with Cell-Type Annotation, Organ/Tissue Mapping, and Perturbation Tasks, GLM Output to EXERKINEMAP]
+
+\subsection{Downstream Agentic Consumption and RAG Workflow}
+
+[Model Context Protocol (MCP), Biological Vector Database \& Continuous Embedding, Interactive Question and Answer]
+
+Sequence comparisons and generated outputs are consumed by an autonomous AI scientist framework integrating specialized agentic models like OmniNA and ProAgent.
+
+Model Context Protocol (MCP) Tool Integration: The AI agent utilizes MCP to interface autonomously with genomic databases, execution notebooks, analysis software, and scientific literature. The agent handles planning, memory retention, and hypothesis generation to advance drug discovery and customized exercise prescriptions.
+
+Biological Vector Database \& Continuous Embedding: The model anchors a Retrieval-Augmented Generation (RAG) workflow against a Biological Knowledge Universe (PubMed, Clinical Trials, Internal Lab Data). The continuous pipeline executes: 1) Semantic Search from a user prompt, 2) Retrieval of Contextually Relevant Biomarkers, 3) LLM Self-Reflection, and 4) Automated Report Generation.
+
+Interactive Question and Answer: The pre-trained EXERKINEMAP model functions as an interrogable database where researchers can query sequence motif identity, defining whether a sequence acts as an enhancer, promoter, splice site, poly(A) signal, translation initiation site, DNA methylation locus, pathogenic/benign variant, or a CRISPR/ABE sgRNA target.
+
+GRITLM. Bidirectional attention over the input for embedding tasks
+Generation 
+Language Modeling Head
+<s><|user|>
+{instruction}
+<|assistant|>
+{response}</s>
+<|users|>
+...
+GRITLM uses causal attention LM head on top of the hidden states predicts the next tokenization. A LM head on top of the hidden states predicts the next tokens.  The format supports conversations with multiple turns. 
+\subsection{Parameter Scaling and Layerwise Evaluation Benchmarks}
+Navigating the parameter scale between millions (M) and billions (B) requires rigorous benchmarking against state-of-the-art architectures (DNABERT2, Nucleotide Transformer-v2, HyenaDNA, OmniNA, and EVE).Performance Metrics: Models are evaluated on downstream classification tasks (e.g., enzyme categorization) using standard Precision, Recall, and $F_1$ metrics. Further linguistic analysis compares Shannon diversity versus token number, and token number versus token frequency .Layerwise Feature Representation (ARI): Deep contextual embeddings are extracted across all architectural depths from the Embedding Block through $T_{24}$. The Adjusted Rand Index (ARI) evaluates how well the latent space at each layer isolates discrete biological targets. Peak ARI scores frequently emerge in mid-to-late layers rather than the terminal layer.t-SNE Visualization of the Biological Latent Space: Once optimal ARI layers are identified, Fit-tSNE algorithms visually plot the word embeddings. This projects Gene Name, Gene Function, Sequence Conservation (High/Low), and Taxonomy Classification across Eukaryote superkingdoms (Human, rat, mouse, horse, yeast) onto a unified coordinate map.These integrated capabilities empower the framework to uncover universal principles governing nucleotide syntax, offering novel methodologies for exploring complex genomic contexts and mapping the physiological impact of exercise across systemic biological networks.
+
+[Performance Metrics, Layerwise Feature Representation (ARI), t-SNE Visualization of the Biological Latent Space]
+
+\begin{table}[htpb]
+\caption{Comprehensive architectural modules, sequence parameters, and mathematical scoring functions comprising the EXERKINEMAP multimodal framework.}
+\centering
+\renewcommand{\arraystretch}{1.6}
+\small
+\begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}p{4cm} >{\raggedright\arraybackslash}p{4cm} X @{}}
+\toprule
+\textbf{Architectural Module} & \textbf{Component} & \textbf{Description \& Mathematical Formulation} \\
+\midrule
+\multicolumn{3}{l}{\textbf{Part I: Genomic Language Model (gLM) \& Pre-training}} \\
+\midrule
+Input Processing & Tokenization \& Positional & Codon-aware tokenization of sequence $S$ into $N$ tokens. Absolute/RoPE positional embeddings added to distinguish upstream regulatory motifs from coding regions. \\
+Contextual Embeddings & Transformer Encoder & Processes sequence through Embedding Block (EB) and $L=24$ layers ($T_1 \dots T_{24}$). \newline $\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$ \\
+Generative Objective & Masked Language Modeling & Learns sequence syntax by masking codon spans ($K$). \newline $L_{\text{gLM}}(\theta) = -\mathbb{E}_{G}\left[\sum_{i \in K} \log P(g_i \mid g_{\backslash K}; \theta)\right]$ \\
+Protein Generation & ESM-2 Gibbs Sampling & Conditional generation of structural motifs and receptor-binding residues via masked Gibbs sampling: \newline $L_{\text{pLM}}(\phi) = -\mathbb{E}_{P}\left[\sum_{j \in M} \log P(p_j \mid p_{\backslash M}; \phi)\right]$ \\
+\midrule
+\multicolumn{3}{l}{\textbf{Part II: Exercise-Responsive Molecular Representation}} \\
+\midrule
+Candidate Representation & CLS Pooling & A \texttt{[CLS]} token aggregates the sequence semantics at output $T_{24}$ to form dense candidate exerkine vector $Z_E$. \\
+Exercise Regulation & Classification Threshold & Evaluates the candidate against MoTrPAC exercise signatures to classify valid exerkines: \newline $\rho_q = \sigma(J(q)) \ge \theta_E$ \\
+Multimodal Optimization & Objective Function $J(q)$ & $J(q) = \lambda_E \text{Sc}_{\text{E}} + \lambda_{SP} \text{Sc}_{\text{SP}} + \lambda_{\text{LRI}} \text{Sc}_{\text{LRI}} + \lambda_{\text{sc}} \text{Sc}_{\text{scRNA}}$ \newline Optimized via MSE until convergence threshold $\epsilon$ is met. \\
+Spatial Inference & Cell-Type / Tissue Mapping & Maps candidate sequences to cell-cell spatial communication graphs $\mathcal{G}_E = (C, \epsilon_E, W_E)$ for perturbation analysis. \\
+\midrule
+\multicolumn{3}{l}{\textbf{Part III: Downstream Agentic Consumption \& Evaluation}} \\
+\midrule
+Agentic Orchestration & Model Context Protocol (MCP) & Integrates OmniNA, ProAgent, genomic databases, and literature via RAG for autonomous semantic search and hypotheses generation. \\
+Latent Evaluation & Layerwise Feature Rep (ARI) & Unsupervised clustering on $T_1 \dots T_{24}$ embeddings to evaluate biological partitioning. ARI identifies peak representation layers. \\
+Benchmarking & $F_1$, Fit-tSNE & Visualizes sequence conservation, gene function, and eukaryotic superkingdom taxonomy against baseline models (DNABERT2, EVE, etc.). \\
+\bottomrule
+\end{tabularx}
+\label{tab:exerkinemap_architecture}
+\end{table}
+
+
+\subsection{EXERKINEMAP Math Model - Protein Language Model (pLM)}
+Let $\mathbb{A}_P = {A,R,N,D,C,E,Q,G,H,I,L,K,M,F,P,S,T,W,Y,V}$ denote the standard amino acid alphabet. For the targeted 800 exerkines (spanning human and rat RNA/protein pairs), let a specific exerkine protein sequence $e_k$ be represented as: $ p^{(e_k)} = (p_1,p_2,...,p_M), p_t \in \mathcal{A}_P$. The Protein Language Model (pLM) within EXERKINEMAP maps linear amino acid sequences into high-dimensional structural and functional representations. The object of the pLM is to map the linear amino acid sequence into a high-dimensional structural and functional numerical representation, conditioned on its specific MoTrPAC exerkine identity: $p^{e_k} \rightarrow T_P \rightarrow H_P^{(0)} \rightarrow Z^P$. For a specified exerkine protein $e_k$, the sequence is defined over the twenty standard amino acids. $\mathcal{A_P}$ as $\textbf{p}^{e_k} = (p_1, p_2,...,p_M)$. The sequence is tokenized directly into discrete residue tokens $T_p$ using a vocabulary $\mathcal{V}_P$ adapted from the ESM-2 pre-training corpus and fine-tuned on the MoTrPAC proteomics pipeline to capture universal folding principles specialized for exercise-induced secretomes. Each amino acid token is projected into a continuous vector space as $e_i = \textbf{E}_P[t_i]$. To guarantee strict structural geometry and sequence specificity for the designated MoTrPAC exerkines, this initial embedding $\textbf{H}_P^{(0)}$ fuses these token embeddings with Rotary Positional Embeddings ($\textbf{E}_{RoPE}$) and a unique Exerkine Identity Embedding ($\textbf{E}_{E_k}$). This representation is processed through a deep Transformer encoder across $L$  layers, where Multi-Head Self-Attention ($\mathbf{A}_P$) strongly correlates with 3D residue-residue contacts to capture biophysical properties like binding pockets and hydrophobicity. The network is optimized via Masked Gibbs Sampling: while critical structural motifs and receptor-binding residues remain fixed, variable regions ($\mathcal{M}$) are masked. The model iteratively refines these masked positions by minimizing the negative log-likelihood given their surrounding context, $\mathcal{L}_{pLM}(\phi) = \Sigma_{j\in\mathcal{M}} logP_{\phi}(p_j | \mathbf{T}_P \mathcal{M})$, generating stable, biologically plausible exerkine variants. Following the encoder layers, the final residue-level matrix $Z^P$ is pooled via a classification token into a global structural feature vector $z^P = Z_{CLS}^P \in \mathbb{R}^d$. This framework derives distinct structural embeddings for candidate exerkine proteins ($\mathbf{z}_{e_k}^P$), protein ligands ($z_{l_k}^P$), and receptors ($z_{r_m}^P$. Within this latent structural space, protein homology is evaluated via cosine similarity, $S_P(a,b)$, and the biochemical binding affinity between a ligand and receptor is computed directly using a learned biophysical compatibility matrix $W_P$, yielding $\Gamma_{km}^P = \sigma((z_{l_k}^P)^T \textbf{W}_P {z_{r_m^P}})$. This 3D structural context is then seamlessly fused with translated cellular abundances $x_i(l_k)$ from MoTrPAC spatial proteomics to form a concatenated multimodal cell-state representation $h_{i,q}^P$. This integration allows the spatial interaction score to be augmented with protein-level biological priors ($\beta_{km}$), ESM-2 structural compatibility, and tissue spatial proximity ($K_{ij}^S$), generating the pLM-augmented score $\widetilde{S}_{ij}^{pLM}(l_k,r_m) = x_i(l_k)x_j(r_m)\beta_{km}\Gamma_{km}^PK_{ij}^S.$ By evaluating latent proteomic differences across exercise conditions ($\Delta\mathbf{z}_q^P$) to measure translational efficiency and stability, the model calculates a final protein-level exerkine probability. Ultimately, these ESM-2 driven protein embeddings pair symmetrically with the genomic embeddings ($\mathbf{Z}^N$), integrating vertically into the overarching tissue-level tensor $H_{EX} = \Phi(\mathbf{Z}^N,\mathbf{Z}^P,H^{SC},\mathbf{H}^S)$ to complete the central dogma bridge within the spatial communication network. \newline
+\fbox{Algorithm 2: Protein Language Model (pLM) Computational Protocol} \newline
+\textbf{Input}: Target amino acid sequence $\mathbf{p}^{e_k}$, ESM-2 adapted vocabulary $\mathcal{V}_P$, spatial proteomics abundance matrix $X_P$, spatial proximity matrix $K^S$. \newline
+\textbf{Output}: pLM-augmented spatial interaction score $\widetilde{S}_{ij}^{pLM}$, protein-level exerkine probability $P(E_q = 1 | Protein)$. \newline
+1. Initialize Vocabulary: Load the discrete amino acid vocabulary $\mathcal{V}_P$ fine-tuned on the MoTrPAC proteomics pipeline. \newline
+2. Tokenize Sequence: Partition the input protein sequence $\mathcal{p}^{(e_k)}$ into discrete residue tokens $T_P = (t_1, t_2, ..., t_M)$. \newline
+3. Construct Initial Embeddings: Project tokens into continuous vectors and fuse them with Rotary Positional Embeddings ($E_{RoPE}$) and the unique exerkine identity embedding $(E_{E_K}): \mathbf{H}_P^{(0)} = \mathbf{E}_T + E_{RoPE} + E_{E_k}.$ \newline
+4. Encode 3D Structural Context: Pass the tensor $H_P^{(0)}$ through $L$ Transformer layers. Capture 3D residue-residue contacts via self-attention and optimize structural generation using Masked Gibbs Sampling ($\mathcal{L}_{pLM}$). \newline
+5. Extract Structural Features: Pool the final hidden state matrix $\mathbf{H}_P^{(L)}$ via the \texttt{[CLS]} token to extract the dense, global structural feature vector $\mathbf{z}^P\in \mathbb{R}^d$. \newline
+6. Compute Biophysical Affinity: Calculate the structural binding affinity between protein ligand and receptor using a learned biophysical compatibility matrix: $\Gamma{km}^P = \sigma((\mathbf{z}_{l_k}^P)^T \mathbf{W}_P(\mathbf{z}_{r_m}^P)$. \newline
+7. Execute Multimodal Fusion: Concatenate the structural vector $\mathbf{z}_{l_k}^P$ with the translated cellular abundance $x_i(l_k)$ from MoTrPAC spatial proteomics to form the integrated proteomic cell-state representation $\mathbf{h}_{i,q}^P$. \newline
+8. Calculate Augmented Spatial Interaction: Compute the final proteomic communication score multiplying abundance magnitude, protein-level biological priors ($\beta_{km}$), structural compatibility ($\Gamma_{km}^P$), and spatial proximity $(K_{ij}^S):\widetilde{S}_{ij}^{pLM}(l_k,r_m) = x_i(l_k)x_j(r_m)\beta_{km}\Gamma_{km}^PK_{ij}^S$. \newline
+
+\subsection{Causal-Set Substrate for gLM, pLM, and the Virtual Cell World Model}
+\label{sec:causal}
+To propagate molecular, cellular, and organismal events in a common temporal frame, EXERKINEMAP represents them as a finite partially ordered set (a causal set) $\mathcal{K}=(V,\prec)$ \cite{bombelli1987}. This substrate supplies the coherent temporal structure needed to make cross-modal and cross-scale world-model rollouts meaningful \cite{xing2026}. Each event $v=(c_i,t)$ pairs a cell or spatially resolved unit $c_i\in C$ with a physiological time $t$ (gestational age in the pregnancy module). The relation $\prec$ satisfies:
+\begin{enumerate}
+    \item \textbf{Irreflexivity:} $\neg(v\prec v)$ for all $v\in V$;
+    \item \textbf{Transitivity:} $(u\prec v)\wedge(v\prec w)\Rightarrow u\prec w$;
+    \item \textbf{Local finiteness:} $|\{w\in V : u\prec w\prec v\}|<\infty$ for all $u,v\in V$.
+\end{enumerate}
+$\prec$ is generated by a directed acyclic graph, so the axioms hold by construction and are asserted when the graph is built. The generating relations are (i) lineage and state-transition edges within a cell, (ii) signaling edges $(c_i,t)\rightarrow(c_j,t+\Delta t_{ij})$ with delay $\Delta t_{ij}>0$ for each ligand--receptor interaction in $\mathcal{G}_E$, and (iii) containment edges linking cells to tissues and organs. Only the partial-order formalism is adopted here (cf.\ \cite{devine2026}); no physical or cosmological claims are made, and the order is a modeling constraint, not evidence of causal effects.
+
+\textbf{Causal masks.} Define the additive mask $\Xi_{uv}=0$ if $v\preceq u$ and $-\infty$ otherwise. Attention at event $u$ becomes
+\begin{equation}
+\text{Attention}(Q,K,V)=\text{softmax}\!\left(\frac{QK^{\top}}{\sqrt{d_k}}+\boldsymbol{\Xi}\right)V.
+\end{equation}
+For nucleotide and protein sequences $\prec$ is the total order of positions, so $\boldsymbol{\Xi}$ is the lower-triangular mask of the autoregressive generators, $p(a_q)=\prod_t p(a_t\mid a_{<t})$ (5$'\rightarrow$3$'$ for transcripts, N$\rightarrow$C for translation). The bidirectional encoders (BERT-style gLM, AminoBERT) keep $\boldsymbol{\Xi}=\mathbf{0}$, since regulatory context and folding are not causal in sequence order, mirroring the bidirectional-embedding / causal-generation split described for GritLM above. In the virtual cell world model, $\boldsymbol{\Xi}$ restricts each event to its causal past across cell, tissue, and organ levels.
+
+\subsection{Hierarchical World Model: From Cell State to Whole-Person Physiome}
+Let $\mathbf{u}=[u_{\text{diet}},u_{\text{life}},u_{\text{ex}},u_{\text{geno}}]^{\top}$ denote the phenotype-augmentation vector (macronutrient intake; lifestyle, including circadian timing; exercise dose and modality; genotype), and let $\kappa\in\{\mathcal{H},\text{GDM},\text{T2D},\text{CVD},\text{OB}\}$ denote the condition label, with $\mathcal{H}$ the healthy control. The virtual cell world model is the transition kernel
+\begin{equation}
+p_\psi\!\left(\mathbf{h}_v \;\middle|\; \{\mathbf{h}_w : w\prec v\},\,\mathbf{u},\,\kappa\right),
+\end{equation}
+where $\mathbf{h}_v$ is the multimodal cell-state representation of event $v$ (the fused $h_{i,l_k}$ and $h^{P}_{i,q}$ of Algorithms 1--2). Cell states are composed upward through learned pooling operators,
+\begin{equation}
+\mathcal{G}^{(0)}=\mathcal{G}_E \xrightarrow{\ \text{Pool}_0\ } \mathcal{G}^{(1)}_{\text{tissue}} \xrightarrow{\ \text{Pool}_1\ } \mathcal{G}^{(2)}_{\text{organ}} \xrightarrow{\ \text{Pool}_2\ } \mathcal{W}_{\text{person}},
+\end{equation}
+with $\mathbf{h}^{(\ell+1)}_a=\text{Pool}_\ell\big(\{\mathbf{h}^{(\ell)}_b : b\in a\}\big)$ for each tissue, organ, or person node $a$. This realizes the horizontal cell$\rightarrow$tissue$\rightarrow$organ$\rightarrow$person axis, while the conditioning variables $(\kappa,\mathbf{u})$ and cell-specific state realize the vertical virtual-cell-bank axis. Interorgan edges at levels 1--2 carry endocrine and exerkine signals with transport delays that grow with scale; these delays are estimated from data, and an allometric power law may serve as a weakly informative prior but is not imposed as a constraint. The world model accumulates diverse cell-state types, genotypes, and health conditions into tissue, organ, and whole-person representations, and phenotype augmentation enters through $\mathbf{u}$.
+
+\subsection{Fetal--Maternal Interface and Gestational Diabetes Mellitus (GDM) Network}
+\label{sec:pregnancy}
+The pregnancy module partitions nuclei by origin, using genotype demultiplexing of single-nucleus data: maternal cells $C^{\text{mat}}$ (decidual stromal, decidual immune, and maternal endothelial cells), fetal-origin placental cells $C^{\text{pl}}$ (syncytiotrophoblast, cytotrophoblast, and extravillous trophoblast), and fetal organ cells $C^{\text{fet}}$ (fetal endothelium, liver, heart, and pancreas, from fetal organ atlases). Trophoblasts are fetal-derived, so the maternal--fetal boundary lies between decidual and trophoblast populations. Two edge types connect these sets: (a) tissue-local contact and paracrine edges at the decidua--trophoblast interface and across the intervillous space, scored with the spatial kernel $K^S_{ij}$ on spatial transcriptomics; (b) systemic edges, in which placental hormones and cytokines reach maternal and fetal organs through circulation and transplacental transport, with an organ-level transport weight $\varpi_{ab}\in[0,1]$. With sender $i$ and receiver $j$,
+\begin{equation}
+\widetilde{S}^{FM}_{ij}(l_k,r_m)=x_i(l_k)\,x_j(r_m)\,\beta_{km}\,\Gamma^{P}_{km}\,\Lambda_{ij},\qquad
+\Lambda_{ij}=\begin{cases}K^S_{ij} & \text{tissue-local pair},\\ \varpi_{ab} & \text{systemic pair } (i\in a,\ j\in b),\end{cases}
+\end{equation}
+and analogously for the gLM-augmented score. Gestational age is the time axis $t$, and delivery is a terminal event $v_{\text{birth}}\in V$ whose readout is gestational age at birth, with preterm and post-term birth as outcome labels; fetal-genome polygenic scores for gestational duration may enter through $u_{\text{geno}}$.
+
+GDM is modeled as a condition-specific shift of the interface graph,
+\begin{equation}
+\widetilde{S}^{FM,\kappa}_{ij}(l_k,r_m;t)=\widetilde{S}^{FM}_{ij}(l_k,r_m)\,\exp\!\big(\eta^{\kappa}_{km}+\zeta_{km}\,\bar{g}(t)\big),\qquad \eta^{\mathcal{H}}_{km}=0,
+\end{equation}
+where $\bar{g}(t)$ is the windowed glycemic exposure (maternal glucose, from continuous glucose monitoring where available), $\eta^{\kappa}_{km}$ is learned by case--control contrast against healthy pregnancy, and $\zeta_{km}$ is an exposure coefficient. Candidate shifted ligands include hCG, hPL, leptin, adiponectin, TNF-$\alpha$, and IL-6. Diet, lifestyle, and exercise interventions enter through $\mathbf{u}$, and the module predicts the intervention-conditioned interface graph relative to the untreated GDM trajectory. These are model predictions to be validated against intervention cohorts, not causal effect estimates.
+
+\subsection{Healthy-Control Architecture and Disease Maps (T2D, CVD, Obesity, GDM)}
+\label{sec:diseasemaps}
+Healthy control $\mathcal{H}$ is the reference architecture: reference graphs $\{\mathcal{G}^{(\ell)}_{\mathcal{H}}\}_\ell$ with edge weights $W^{(\ell)}_{\mathcal{H}}$, a reference cell-state density $p_{\mathcal{H}}(\mathbf{h})$ per tissue, and reference wearable baselines $\mathbf{B}_{\mathcal{H}}$. Each disease map is defined relative to it,
+\begin{equation}
+W^{(\ell)}_{\kappa}=W^{(\ell)}_{\mathcal{H}}\odot\exp\!\big(\Delta^{(\ell)}_{\kappa}\big),\qquad \Delta^{(\ell)}_{\mathcal{H}}=0,
+\end{equation}
+where $\Delta^{(\ell)}_{\kappa}$ is the differential-edge map of condition $\kappa$ at level $\ell$ (Table~\ref{tab:diseasemaps}). The generative objective of Eq.~\eqref{eq:J} is extended with a health term:
+\begin{equation}
+\text{Score}_{\text{health}}(q)=-D_{\text{KL}}\!\big(p_\psi(\mathbf{h}\mid q,\mathbf{u},\kappa)\,\big\|\,p_{\mathcal{H}}(\mathbf{h})\big),\qquad
+J_{\text{ext}}(q)=J(q)+\lambda_{\mathcal{H}}\,\text{Score}_{\text{health}}(q),
+\end{equation}
+and the retention criterion becomes $\rho_q=\sigma(J_{\text{ext}}(q))\ge\theta_E$. The term penalizes predicted post-exerkine cell states that fall outside the healthy support; its meaning therefore depends on $p_{\mathcal{H}}$ being estimated from controls matched on tissue, age, and sex.
+
+\begin{table}[htpb]
+\caption{Healthy control and disease maps, with primary tissues, candidate signaling axes, and intended data sources. Disease cohorts are to be selected per condition.}
+\centering
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}p{3.7cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{3.9cm} @{}}
+\toprule
+\textbf{Condition} & \textbf{Primary tissues} & \textbf{Candidate signaling axes} & \textbf{Data sources} \\
+\midrule
+Healthy ($\mathcal{H}$) & All modeled tissues & Reference exerkine ligand--receptor graph and cell-state density & MoTrPAC baseline and control groups; HuBMAP donor atlases; healthy placenta \\
+GDM & Placenta, decidua, fetal liver/pancreas/heart, maternal adipose and muscle & hCG, hPL, leptin, adiponectin, TNF-$\alpha$, IL-6 & Placental snRNA-seq (GDM cohort); CGM \\
+T2D & Pancreatic islet, skeletal muscle, liver, adipose & Insulin signaling; myokine, hepatokine, adipokine axes & Islet and tissue atlases; CGM; MoTrPAC exercise context \\
+CVD & Myocardium, vascular endothelium & Cardiac--endothelial, inflammatory, and natriuretic-peptide signaling & Heart atlases; ECG/HRV wearable sets \\
+Obesity (OB) & Adipose, skeletal muscle, liver & Leptin, adiponectin, IL-6, TNF-$\alpha$ & Adipose atlases; CGM; activity wearables \\
+\bottomrule
+\end{tabularx}
+\label{tab:diseasemaps}
+\end{table}
+
+\subsection{Wearable Telemetry and Real-Time Extrinsic Factor Integration}
+\label{sec:wearable}
+Continuous wearable signals enter the world model as exogenous events in $\mathcal{K}$. For a raw signal $\mathbf{w}$ and a window of length $\Delta_w$ ending at time $t$,
+\begin{equation}
+\mathbf{E}_{\text{ext}}(t)=\Psi\big(\mathbf{w}_{(t-\Delta_w,\,t]}\big),
+\end{equation}
+where $\Psi$ computes windowed features: HRV from inter-beat intervals, electrodermal activity, accelerometry, sleep architecture $S_{arch}$, circadian phase $\phi_C$, SpO$_2$, and glucose, using overlapping sliding windows in the style of FLIRT \cite{dbdp}. Windows are causal: each is timestamped at its end and uses no later samples, so $v_{\text{ext}}(t')\prec v_{\text{ext}}(t)$ for $t'<t$. Overlapping windows are treated as an ordered event sequence, not as independent samples.
+
+The Model Context Protocol (MCP) retrieves individualized physiological baselines from the Biological Vector Database, $\mathbf{B}_k=\text{Retrieve}_k\big(\mathbf{E}_{\text{ext}}(t);\mathbf{B}_{\text{history}}\big)$. The extrinsic modulatory weight is bounded,
+\begin{equation}
+\omega_{\text{ext}}(t)=\omega_{\min}+(\omega_{\max}-\omega_{\min})\,\sigma\!\big(g_\theta(\mathbf{E}_{\text{ext}}(t),\mathbf{B}_k)\big),
+\end{equation}
+and regularized toward $1$ ($\mathcal{R}_\omega=\|\omega_{\text{ext}}-1\|^2$), so that the model reduces to the static score when telemetry is uninformative. It modulates the pLM-augmented communication score:
+\begin{equation}
+\widetilde{S}^{dynamic}_{ij}(l_k,r_m,t)=\widetilde{S}^{pLM}_{ij}(l_k,r_m)\cdot\omega_{\text{ext}}(t).
+\end{equation}
+Windows flagged as acute illness (e.g., by wearable COVID-19 detection) are masked to $\omega_{\text{ext}}=1$ so that infection-driven physiology is not read as training state. $g_\theta$ is trained by aligning wearable-derived physiological state to molecular state in paired exercise cohorts (MoTrPAC); the wearable-only repositories supply physiological priors and illness, glycemic, and cardiac covariates.
+
+Exercise recommendations are produced as bounded decision support: a policy $\pi$ maximizes predicted adaptation subject to load and recovery constraints (e.g., HRV- and sleep-derived thresholds), with clinician oversight for pregnancy, GDM, and cardiovascular populations. The hypothesis that resistance training timed to circadian exerkine receptivity improves adaptation is evaluated, not assumed.
+
+\subsection{Dataset Ingestion and Digital Biomarker Layer}
+\label{sec:datasets}
+EXERKINEMAP ingests molecular, spatial, and digital-biomarker data through a common schema (Table~\ref{tab:datasets}). Digital biomarker data come from the Digital Health Data Repository (DHDR) of the Digital Biomarker Discovery Pipeline (DBDP) \cite{dbdp}. Feature generation uses FLIRT (sliding-window HRV, EDA, and accelerometer features from consumer wearables), device-format readers (devicely), sedentary and posture classification (DeepPostures), and human activity recognition. The wearable-only datasets have no paired molecular profiles; MoTrPAC provides the molecular anchor, and the DHDR sets provide physiological priors, covariates, and disease-map inputs. A nutrition dataset will be added as the diet component of $\mathbf{u}$ once released.
+
+\begin{table}[htpb]
+\caption{Data sources ingested by EXERKINEMAP, their roles, and key constraints.}
+\centering
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}p{3.3cm} >{\raggedright\arraybackslash}p{3.3cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{3.4cm} @{}}
+\toprule
+\textbf{Source} & \textbf{Signal} & \textbf{Role in EXERKINEMAP} & \textbf{Constraint} \\
+\midrule
+MoTrPAC & Multi-omic exercise response (human, rat) & Molecular anchor; exercise perturbation $u_{\text{ex}}$; healthy baseline & Few disease labels \\
+HuBMAP & Spatial tissue maps & Tissue graphs $\mathcal{G}^{(1)}$; spatial kernels $K^S$ & Mostly healthy donors \\
+Placental and fetal snRNA-seq, spatial & Single-nucleus and spatial transcriptomics & Fetal--maternal interface (Section~\ref{sec:pregnancy}) & Needs genotype demultiplexing \\
+Disease cohorts & scRNA-seq, snRNA-seq & T2D, CVD, obesity, GDM maps (Section~\ref{sec:diseasemaps}) & Selection pending \\
+DHDR Stanford Wearables & Consumer wearable physiology & Baselines $\mathbf{B}_{\text{history}}$ & Modalities to confirm \\
+DHDR SpO$_2$ & Blood oxygen saturation & Recovery and hypoxia state & Device-dependent sampling \\
+DHDR COVID-19 & Wearable infection signals & Illness mask for $\omega_{\text{ext}}$ & Keep out of healthy control \\
+DHDR Cardiovascular & ECG, HRV & CVD map features & Label quality \\
+DHDR CGM & Continuous glucose & $\bar{g}(t)$; T2D, obesity, GDM maps & Mostly non-pregnant \\
+Wrist PPG during exercise \cite{jarchi2017,goldberger2000} & PPG, accelerometer, gyroscope & Exercise intensity; signal quality & Motion artifacts \\
+PPG-DaLiA & PPG with activity labels & Heart rate under motion; activity labels & Small cohort \\
+Adolescent EEG & EEG; healthy ($n=39$) vs.\ schizophrenia symptoms ($n=45$) & Neural-organ reference node & Small, cross-sectional \\
+Nutrition (forthcoming) & Dietary intake & $u_{\text{diet}}$ & Pending release \\
+\bottomrule
+\end{tabularx}
+\label{tab:datasets}
+\end{table}
+
+\subsection{OmicsIntegrator}
+scRNA-seq
+Chromium
+spatial transcriptomics
+Xenium, MerFish
+spatial proteomics
+CODEX, MIBI
+spatial metabolomics and lipidomics
+Bruker timsTOF
+spatial coordinates mapping
+
+\section{Discussion}
+Interpret how the dual-language model architecture biologically and computationally advances the field of translational bioinformatics
+- Synthesis
+
+- Implications
+Implications of Generative Modeling
+Add a paragraph discussing:
+* how generative exerkines can be used
+* how they integrate with single‑cell and spatial omics
+* how EXERKINEMAP can propose new digital and virtual biology concepts through Agentic AI, etc
+
+- Limitations
+* limitations and future work
+
+Validation of the Generative Sequence Space
+
+Biological Insights from Spatial Inference
+
+Agentic AI in Precision Medicine
+Methodological Limitations
+
+This is the natural place for high‑level interpretation.
+\section{Conclusion}
+The conclusion should synthesize the core technological achievement and pivot toward the next frontier of precision medicine.
+- Core Achievement
+- Translational Impact
+- Future Directions (Branching Frameworks)
+
+Conclusion statement.
+
+\begin{thebibliography}{9}
+
+
+\bibitem{Akiyama2022} Akiyama, M. and Sakakibara, Y. (2022) “Informative RNA base embedding for RNA structural alignment and clustering by deep representation learning,” NAR Genomics and Bioinformatics, 4(1), p. lqac012. Available at: https://doi.org/10.1093/nargab/lqac012. 
+\bibitem{Ascensao2026} Ascensao, J.A. and Desai, M.M. (2026) “Experimental evolution in an era of molecular manipulation,” Nature Reviews Genetics, 27(1), pp. 81–95. Available at: https://doi.org/10.1038/s41576-025-00867-6. 
+\bibitem{Bandaru2017} Bandaru, P. et al. (2017) “Deconstruction of the Ras switching cycle through saturation mutagenesis,” eLife. Edited by A. Valencia, 6, p. e27810. Available at: https://doi.org/10.7554/eLife.27810. 
+\bibitem{Bepler2019} Bepler, T. et al. (2019) “Positive-unlabeled convolutional neural networks for particle picking in cryo-electron micrographs,” Nature Methods, 16(11), pp. 1153–1160. Available at: https://doi.org/10.1038/s41592-019-0575-8. 
+\bibitem{Bepler2021} Bepler, T. and Berger, B. (2021) “Learning the protein language: Evolution, structure, and function,” Cell Systems, 12(6), pp. 654-669.e3. Available at: https://doi.org/10.1016/j.cels.2021.05.017. 
+\bibitem{Brenan2016} Brenan, L. et al. (2016) “Phenotypic Characterization of a Comprehensive Set of MAPK1/ERK2 Missense Mutants,” Cell Reports, 17(4), pp. 1171–1183. Available at: https://doi.org/10.1016/j.celrep.2016.09.061. 
+\bibitem{Chatterjee2013} Chatterjee, J., Rechenmacher, F. and Kessler, H. (2013) “N‐methylation of peptides and proteins: an important element for modulating biological functions,” Angewandte Chemie International Edition, 52(1), pp. 254–269. 
+\bibitem{Chen2022} Chen, J. et al. (2022) “Interpretable RNA foundation model from unannotated data for highly accurate RNA structure and function predictions,” arXiv preprint arXiv:2204.00300 [Preprint]. 
+\bibitem{Cunningham2018} Cunningham, F. et al. (2018) “Ensembl 2019,” Nucleic Acids Research, 47(D1), pp. D745–D751. Available at: https://doi.org/10.1093/nar/gky1113. 
+\bibitem{Danaee2018} Danaee, P. et al. (2018) “bpRNA: large-scale automated annotation and analysis of RNA secondary structure,” Nucleic Acids Research, 46(11), pp. 5381–5394. Available at: https://doi.org/10.1093/nar/gky285. 
+\bibitem{Findlay2018} Findlay, G.M. et al. (2018) “Accurate classification of BRCA1 variants with saturation genome editing,” Nature, 562(7726), pp. 217–222. Available at: https://doi.org/10.1038/s41586-018-0461-z. 
+\bibitem{Harms2013} Harms, M.J. and Thornton, J.W. (2013) “Evolutionary biochemistry: revealing the historical and physical causes of protein properties,” Nature Reviews Genetics, 14(8), pp. 559–571. Available at: https://doi.org/10.1038/nrg3540. 
+\bibitem{Ingraham2023} Ingraham, J.B. et al. (2023) “Illuminating protein space with a programmable generative model,” Nature, 623(7989), pp. 1070–1078. 
+\bibitem{Kalvari2021} Kalvari, I. et al. (2021) “Rfam 14: expanded coverage of metagenomic, viral and microRNA families,” Nucleic Acids Research, 49(D1), pp. D192–D200. Available at: https://doi.org/10.1093/nar/gkaa1047. 
+\bibitem{Kang2022} Kang, J. et al. (2022) “RNAInter v4. 0: RNA interactome repository with redefined confidence scoring system and improved accessibility,” Nucleic acids research, 50(D1), pp. D326–D332. 
+\bibitem{Kingma2014} Kingma, D.P. and Ba, J. (2014) “Adam: A method for stochastic optimization,” arXiv preprint arXiv:1412.6980 [Preprint]. 
+\bibitem{Kitzman2015} Kitzman, J.O. et al. (2015) “Massively parallel single-amino-acid mutagenesis,” Nature Methods, 12(3), pp. 203–206. Available at: https://doi.org/10.1038/nmeth.3223. 
+\bibitem{Kozomara2019} Kozomara, A., Birgaoanu, M. and Griffiths-Jones, S. (2019) “miRBase: from microRNA sequences to function,” Nucleic Acids Research, 47(D1), pp. D155–D162. Available at: https://doi.org/10.1093/nar/gky1141. 
+\bibitem{Li2006} Li, W. and Godzik, A. (2006) “Cd-hit: a fast program for clustering and comparing large sets of protein or nucleotide sequences,” Bioinformatics, 22(13), pp. 1658–1659. Available at: https://doi.org/10.1093/bioinformatics/btl158. 
+\bibitem{Luo2020} Luo, Y. et al. (2020) “New developments on the Encyclopedia of DNA Elements (ENCODE) data portal,” Nucleic Acids Res, 48(D1), pp. D882-d889. Available at: https://doi.org/10.1093/nar/gkz1062. 
+\bibitem{Melamed2013} Melamed, D. (2013) “Homeostatic regulation of aging and rejuvenation in the B lineage cells,” Critical ReviewsTM in Immunology, 33(1). 
+\bibitem{Melamed2024} Melamed, N. and Heinsheimer, T. (2024) “Applying centrifugal propulsion to enable asteroid deflection,” Acta Astronautica, 214, pp. 658–664. 
+\bibitem{NCBI2018} NCBI Resource Coordinators (2018) “Database resources of the National Center for Biotechnology Information,” Nucleic Acids Research, 46(D1), pp. D8–D13. Available at: https://doi.org/10.1093/nar/gkx1095. 
+\bibitem{Nguyen2024} Nguyen, E. et al. (2024) “Hyenadna: Long-range genomic sequence modeling at single nucleotide resolution,” Advances in Neural Information Processing Systems, 36. 
+\bibitem{Paszke2019} Paszke, A. et al. (2019) “PyTorch: An Imperative Style, High-Performance Deep Learning Library,” arXiv, abs/1912.01703. 
+\bibitem{Penic2025} Penić, R.J. et al. (2025) “Rinalmo: General-purpose rna language models can generalize well on structure prediction tasks,” Nature Communications, 16(1), p. 5671. 
+\bibitem{Raffel2020} Raffel, C. et al. (2020) “Exploring the limits of transfer learning with a unified text-to-text transformer,” Journal of machine learning research, 21(140), pp. 1–67. 
+\bibitem{Riesselman2018} Riesselman, A.J., Ingraham, J.B. and Marks, D.S. (2018) “Deep generative models of genetic variation capture the effects of mutations,” Nature Methods, 15(10), pp. 816–822. Available at: https://doi.org/10.1038/s41592-018-0138-4. 
+\bibitem{Ritchie2015} Ritchie, M.E. et al. (2015) “limma powers differential expression analyses for RNA-sequencing and microarray studies,” Nucleic Acids Res, 43(7), p. e47. Available at: https://doi.org/10.1093/nar/gkv007. 
+\bibitem{Szikszai2022} Szikszai, M. et al. (2022) “Deep learning models for RNA secondary structure prediction (probably) do not generalize across families,” Bioinformatics, 38(16), pp. 3892–3899. 
+\bibitem{Toiber2013} Toiber, D. et al. (2013) “SIRT6 recruits SNF2H to DNA break sites, preventing genomic instability through chromatin remodeling,” Molecular cell, 51(4), pp. 454–468. 
+\bibitem{Tsirigos2015} Tsirigos, K.D. et al. (2015) “The TOPCONS web server for consensus prediction of membrane protein topology and signal peptides,” Nucleic Acids Research, 43(W1), pp. W401–W407. Available at: https://doi.org/10.1093/nar/gkv485. 
+\bibitem{UniProt2018} UniProt Consortium, T. (2018) “UniProt: the universal protein knowledgebase,” Nucleic Acids Research, 46(5), pp. 2699–2699. Available at: https://doi.org/10.1093/nar/gky092. 
+\bibitem{Wang2024} Wang, N. et al. (2024) “Multi-purpose RNA language modelling with motif-aware pretraining and type-guided fine-tuning,” Nature Machine Intelligence, 6(5), pp. 548–557. 
+\bibitem{Weile2017} Weile, J. et al. (2017) “A framework for exhaustively mapping functional missense variants,” Molecular Systems Biology, 13(12), p. MSB177908. Available at: https://doi.org/10.15252/msb.20177908. 
+\bibitem{Wrenbeck2017} Wrenbeck, E.E., Azouz, L.R. and Whitehead, T.A. (2017) “Single-mutation fitness landscapes for an enzyme on multiple substrates reveal specificity is globally encoded,” Nature Communications, 8(1), p. 15695. Available at: https://doi.org/10.1038/ncomms15695. 
+\bibitem{Yates2020} Yates, A.D. et al. (2020) “Ensembl 2020,” Nucleic Acids Research, 48(D1), pp. D682–D688. Available at: https://doi.org/10.1093/nar/gkz966. 
+\bibitem{Yin2025} Yin, W. et al. (2025) “ERNIE-RNA: an RNA language model with structure-enhanced representations,” Nature Communications, 16(1), p. 10076. Available at: https://doi.org/10.1038/s41467-025-64972-0. 
+\bibitem{Zablocki2025} Zablocki, L.I. et al. (2025) “Comprehensive benchmarking of large language models for RNA secondary structure prediction,” Briefings in Bioinformatics, 26(2), p. bbaf137. Available at: https://doi.org/10.1093/bib/bbaf137. 
+\bibitem{Zhang2024} Zhang, Y. et al. (2024) “Multiple sequence alignment-based RNA language model and its application to structural inference,” Nucleic Acids Research, 52(1), pp. e3–e3. Available at: https://doi.org/10.1093/nar/gkad1031. 
+\bibitem{Zhao2022} Zhao, W. et al. (2022) “POSTAR3: an updated platform for exploring post-transcriptional regulation coordinated by RNA-binding proteins,” Nucleic Acids Research, 50(D1), pp. D287–D294. Available at: https://doi.org/10.1093/nar/gkab702.
+
+\end{thebibliography}
+
+
+
+
+\end{document}

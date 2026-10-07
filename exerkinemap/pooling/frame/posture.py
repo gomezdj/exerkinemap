@@ -1,6 +1,6 @@
 """Compatibility re-exports for posture and activity adapters."""
 
-from exerkinemap.wearables.posture import (
+from Exerkinetics.wearables.posture import (
     attach_deep_postures,
     attach_har_labels,
     attach_predicted_labels,
