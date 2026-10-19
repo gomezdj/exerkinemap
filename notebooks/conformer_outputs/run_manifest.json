@@ -1,0 +1,9 @@
+{
+    "num_conformers": 30,
+    "random_seed": 20261019,
+    "initial_minimization": "MMFF94",
+    "fallback_minimization": "UFF",
+    "openmm_force_field": "openff-2.1.0.offxml",
+    "input_csv": "/Users/dgomez/MacWorkspace/Notebooks/JupyterNotebook/exerkinemap/notebooks/exercise_metabolites.csv",
+    "output_dir": "/Users/dgomez/MacWorkspace/Notebooks/JupyterNotebook/exerkinemap/notebooks/conformer_outputs"
+}
