@@ -46,8 +46,6 @@ The model grows along two axes:
 
 ### Virtual cell world model
 
-The world model has three coupled parts, following the structure proposed for virtual cell world models in *A world model of the virtual cell* (Cell, 2026):
-
 | Part | What it does |
 |---|---|
 | **Structured encoder and cellular manifold** | modality encoders (gLM, pLM, scFM, spatial) fused by message passing over a molecular network of ligands, receptors and pathways into a tissue-indexed latent state |
