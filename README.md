@@ -33,7 +33,7 @@ By integrating genomic and protein language models with single-cell and spatial 
 
 The model grows along two axes:
 
-* **A virtual cell bank** across cell types, genotypes and conditions (healthy control, GDM, T2D, CVD, obesity).
+* **A virtual cell bank** across cell types, genotypes and conditions (healthy control, GDM, T2D, cancer, CVD, obesity).
 * **Composition** from cells to tissues, organs and the whole person, including the fetal–maternal interface.
 
 ## Architecture
